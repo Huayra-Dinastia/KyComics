@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CF6895B911696C6E60ABC5F1DDE3C2D2ED846929",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "897cb9d0-5c38-da48-bc19-28824aff2a48++3256" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "897cb9d0-5c38-da48-bc19-28824aff2a48++3256" : 9223372036854775807,
+    "CF6895B911696C6E60ABC5F1DDE3C2D2ED846929" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6E712932-C26B-4341-842A-4CC32DFB9A9B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "897cb9d0-5c38-da48-bc19-28824aff2a48++3256" : "",
+    "CF6895B911696C6E60ABC5F1DDE3C2D2ED846929" : "Kycomics\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Kycomics",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Kycomics\/Kycomics.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/192.168.3.100\/svn\/ALNL",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "897cb9d0-5c38-da48-bc19-28824aff2a48++3256"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/Huayra_Dinastia\/Kycomics.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CF6895B911696C6E60ABC5F1DDE3C2D2ED846929"
+    }
+  ]
+}

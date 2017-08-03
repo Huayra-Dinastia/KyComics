@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		60E8CECE1F33141B003A86BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CECD1F33141B003A86BA /* main.m */; };
+		60E8CED11F33141B003A86BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CED01F33141B003A86BA /* AppDelegate.m */; };
+		60E8CED41F33141B003A86BA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CED31F33141B003A86BA /* ViewController.m */; };
+		60E8CED71F33141B003A86BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CED51F33141B003A86BA /* Main.storyboard */; };
+		60E8CED91F33141B003A86BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CED81F33141B003A86BA /* Assets.xcassets */; };
+		60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CEDA1F33141B003A86BA /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		60E8CEC91F33141B003A86BA /* Kycomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kycomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60E8CECD1F33141B003A86BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		60E8CECF1F33141B003A86BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		60E8CED01F33141B003A86BA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		60E8CED21F33141B003A86BA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		60E8CED31F33141B003A86BA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		60E8CED61F33141B003A86BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		60E8CED81F33141B003A86BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60E8CEDB1F33141B003A86BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		60E8CEDD1F33141B003A86BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60E8CEC61F33141B003A86BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60E8CEC01F33141B003A86BA = {
+			isa = PBXGroup;
+			children = (
+				60E8CECB1F33141B003A86BA /* Kycomics */,
+				60E8CECA1F33141B003A86BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60E8CECA1F33141B003A86BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60E8CEC91F33141B003A86BA /* Kycomics.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60E8CECB1F33141B003A86BA /* Kycomics */ = {
+			isa = PBXGroup;
+			children = (
+				60E8CECF1F33141B003A86BA /* AppDelegate.h */,
+				60E8CED01F33141B003A86BA /* AppDelegate.m */,
+				60E8CED21F33141B003A86BA /* ViewController.h */,
+				60E8CED31F33141B003A86BA /* ViewController.m */,
+				60E8CED51F33141B003A86BA /* Main.storyboard */,
+				60E8CED81F33141B003A86BA /* Assets.xcassets */,
+				60E8CEDA1F33141B003A86BA /* LaunchScreen.storyboard */,
+				60E8CEDD1F33141B003A86BA /* Info.plist */,
+				60E8CECC1F33141B003A86BA /* Supporting Files */,
+			);
+			path = Kycomics;
+			sourceTree = "<group>";
+		};
+		60E8CECC1F33141B003A86BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60E8CECD1F33141B003A86BA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		60E8CEC81F33141B003A86BA /* Kycomics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60E8CEE01F33141B003A86BA /* Build configuration list for PBXNativeTarget "Kycomics" */;
+			buildPhases = (
+				60E8CEC51F33141B003A86BA /* Sources */,
+				60E8CEC61F33141B003A86BA /* Frameworks */,
+				60E8CEC71F33141B003A86BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Kycomics;
+			productName = Kycomics;
+			productReference = 60E8CEC91F33141B003A86BA /* Kycomics.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60E8CEC11F33141B003A86BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = KY;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = kcvly;
+				TargetAttributes = {
+					60E8CEC81F33141B003A86BA = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 60E8CEC41F33141B003A86BA /* Build configuration list for PBXProject "Kycomics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 60E8CEC01F33141B003A86BA;
+			productRefGroup = 60E8CECA1F33141B003A86BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60E8CEC81F33141B003A86BA /* Kycomics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60E8CEC71F33141B003A86BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */,
+				60E8CED91F33141B003A86BA /* Assets.xcassets in Resources */,
+				60E8CED71F33141B003A86BA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60E8CEC51F33141B003A86BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60E8CED41F33141B003A86BA /* ViewController.m in Sources */,
+				60E8CED11F33141B003A86BA /* AppDelegate.m in Sources */,
+				60E8CECE1F33141B003A86BA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		60E8CED51F33141B003A86BA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60E8CED61F33141B003A86BA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		60E8CEDA1F33141B003A86BA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60E8CEDB1F33141B003A86BA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		60E8CEDE1F33141B003A86BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		60E8CEDF1F33141B003A86BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60E8CEE11F33141B003A86BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Kycomics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kcvly.com.Kycomics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		60E8CEE21F33141B003A86BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Kycomics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kcvly.com.Kycomics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60E8CEC41F33141B003A86BA /* Build configuration list for PBXProject "Kycomics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60E8CEDE1F33141B003A86BA /* Debug */,
+				60E8CEDF1F33141B003A86BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60E8CEE01F33141B003A86BA /* Build configuration list for PBXNativeTarget "Kycomics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60E8CEE11F33141B003A86BA /* Debug */,
+				60E8CEE21F33141B003A86BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60E8CEC11F33141B003A86BA /* Project object */;
+}
