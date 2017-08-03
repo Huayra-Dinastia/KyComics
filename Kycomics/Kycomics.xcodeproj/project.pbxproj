@@ -13,9 +13,12 @@
 		60E8CED71F33141B003A86BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CED51F33141B003A86BA /* Main.storyboard */; };
 		60E8CED91F33141B003A86BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CED81F33141B003A86BA /* Assets.xcassets */; };
 		60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CEDA1F33141B003A86BA /* LaunchScreen.storyboard */; };
+		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B2E4667FB73479A8820B88A /* Pods-Kycomics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kycomics.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kycomics/Pods-Kycomics.release.xcconfig"; sourceTree = "<group>"; };
+		444B4327CA57694E1CB6E200 /* Pods-Kycomics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kycomics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kycomics/Pods-Kycomics.debug.xcconfig"; sourceTree = "<group>"; };
 		60E8CEC91F33141B003A86BA /* Kycomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kycomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60E8CECD1F33141B003A86BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60E8CECF1F33141B003A86BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +29,8 @@
 		60E8CED81F33141B003A86BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60E8CEDB1F33141B003A86BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60E8CEDD1F33141B003A86BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60E8CEE31F33239A003A86BA /* Kycomics_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Kycomics_PrefixHeader.pch; sourceTree = "<group>"; };
+		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,8 @@
 			children = (
 				60E8CECB1F33141B003A86BA /* Kycomics */,
 				60E8CECA1F33141B003A86BA /* Products */,
+				68B6444B08EB8B9D91E3D0A7 /* Pods */,
+				C5D08FCF8ECCFC078789A645 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +66,7 @@
 		60E8CECB1F33141B003A86BA /* Kycomics */ = {
 			isa = PBXGroup;
 			children = (
+				60E8CEE41F334575003A86BA /* NetTools */,
 				60E8CECF1F33141B003A86BA /* AppDelegate.h */,
 				60E8CED01F33141B003A86BA /* AppDelegate.m */,
 				60E8CED21F33141B003A86BA /* ViewController.h */,
@@ -75,8 +84,33 @@
 			isa = PBXGroup;
 			children = (
 				60E8CECD1F33141B003A86BA /* main.m */,
+				60E8CEE31F33239A003A86BA /* Kycomics_PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60E8CEE41F334575003A86BA /* NetTools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetTools;
+			sourceTree = "<group>";
+		};
+		68B6444B08EB8B9D91E3D0A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				444B4327CA57694E1CB6E200 /* Pods-Kycomics.debug.xcconfig */,
+				1B2E4667FB73479A8820B88A /* Pods-Kycomics.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C5D08FCF8ECCFC078789A645 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +120,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60E8CEE01F33141B003A86BA /* Build configuration list for PBXNativeTarget "Kycomics" */;
 			buildPhases = (
+				6DB6596998CD970EB5A3FCD3 /* [CP] Check Pods Manifest.lock */,
 				60E8CEC51F33141B003A86BA /* Sources */,
 				60E8CEC61F33141B003A86BA /* Frameworks */,
 				60E8CEC71F33141B003A86BA /* Resources */,
+				684FDD355012BD769E176976 /* [CP] Embed Pods Frameworks */,
+				478C9D95F913958999044426 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,6 +182,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		478C9D95F913958999044426 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kycomics/Pods-Kycomics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		684FDD355012BD769E176976 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kycomics/Pods-Kycomics-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DB6596998CD970EB5A3FCD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		60E8CEC51F33141B003A86BA /* Sources */ = {
@@ -271,8 +356,11 @@
 		};
 		60E8CEE11F33141B003A86BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 444B4327CA57694E1CB6E200 /* Pods-Kycomics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Kycomics/Kycomics_PrefixHeader.pch";
 				INFOPLIST_FILE = Kycomics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -283,8 +371,11 @@
 		};
 		60E8CEE21F33141B003A86BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B2E4667FB73479A8820B88A /* Pods-Kycomics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Kycomics/Kycomics_PrefixHeader.pch";
 				INFOPLIST_FILE = Kycomics/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -312,6 +403,7 @@
 				60E8CEE21F33141B003A86BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
