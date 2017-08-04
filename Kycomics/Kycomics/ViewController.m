@@ -10,8 +10,10 @@
 
 #import <TFHpple.h>
 #import "KYNetManager.h"
+#import "KYListCell.h"
 
-@interface ViewController ()
+@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -19,8 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self requestData];
+}
+
+- (void)requestData {
     NSDictionary *parm = @{
                            @"page": @(0),
                            @"f_doujinshi": @(1),
@@ -42,11 +49,11 @@
         // 抓取到网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray<TFHppleElement *> *picElements = [doc searchWithXPathQuery:@"//div [@class='it5']//a"];
-
+        
         if (0 == picElements.count) {
             return ;
         }
-
+        
         NSMutableArray *ids = [NSMutableArray arrayWithCapacity:picElements.count];
         // 从 a 标签中提取 图片的URL
         for (TFHppleElement *pic in picElements) {
@@ -60,7 +67,7 @@
             NSString *str2 = tmpArr[length - 2];
             [ids addObject:@[str1, str2]];
         }
-
+        
         NSDictionary *parm = @{
                                @"method": @"gdata",
                                @"gidlist": ids
@@ -72,7 +79,17 @@
             
         }];
     }];
-    
+}
+
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 3;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KYListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KYListCellId" forIndexPath:indexPath];
+    cell.labTitle.text = @"测试";
+    return cell;
 }
 
 @end

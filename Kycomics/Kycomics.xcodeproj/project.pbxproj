@@ -14,6 +14,7 @@
 		60E8CED91F33141B003A86BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CED81F33141B003A86BA /* Assets.xcassets */; };
 		60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CEDA1F33141B003A86BA /* LaunchScreen.storyboard */; };
 		60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEE91F33461B003A86BA /* KYNetManager.m */; };
+		60E8CEED1F34146F003A86BA /* KYListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEEC1F34146F003A86BA /* KYListCell.m */; };
 		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,8 @@
 		60E8CEE31F33239A003A86BA /* Kycomics_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Kycomics_PrefixHeader.pch; sourceTree = "<group>"; };
 		60E8CEE81F33461B003A86BA /* KYNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYNetManager.h; sourceTree = "<group>"; };
 		60E8CEE91F33461B003A86BA /* KYNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYNetManager.m; sourceTree = "<group>"; };
+		60E8CEEB1F34146F003A86BA /* KYListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYListCell.h; sourceTree = "<group>"; };
+		60E8CEEC1F34146F003A86BA /* KYListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYListCell.m; sourceTree = "<group>"; };
 		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,6 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				60E8CEE41F334575003A86BA /* NetTools */,
+				60E8CEEB1F34146F003A86BA /* KYListCell.h */,
+				60E8CEEC1F34146F003A86BA /* KYListCell.m */,
 				60E8CECF1F33141B003A86BA /* AppDelegate.h */,
 				60E8CED01F33141B003A86BA /* AppDelegate.m */,
 				60E8CED21F33141B003A86BA /* ViewController.h */,
@@ -244,6 +249,7 @@
 				60E8CED41F33141B003A86BA /* ViewController.m in Sources */,
 				60E8CED11F33141B003A86BA /* AppDelegate.m in Sources */,
 				60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */,
+				60E8CEED1F34146F003A86BA /* KYListCell.m in Sources */,
 				60E8CECE1F33141B003A86BA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
