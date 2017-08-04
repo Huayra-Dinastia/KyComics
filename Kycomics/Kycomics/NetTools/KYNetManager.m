@@ -56,8 +56,11 @@
                                                                         id  _Nullable responseObject,
                                                                         NSError * _Nullable error) {
                                                         if (completion) {
-                                                            completion(responseObject);
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                completion(responseObject);
+                                                            });
                                                         }
+                                                        
     }];
     
     [task resume];
@@ -75,7 +78,9 @@
                                                                         id  _Nullable responseObject,
                                                                         NSError * _Nullable error) {
                                                         if (completion) {
-                                                            completion(responseObject);
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                completion(responseObject);
+                                                            });
                                                         }
                                                     }];
     
