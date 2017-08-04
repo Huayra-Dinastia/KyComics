@@ -1,29 +1,26 @@
 //
-//  ViewController.m
+//  KYHomeViewController.m
 //  Kycomics
 //
 //  Created by HongYi on 2017/8/3.
 //  Copyright © 2017年 kcvly. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "KYHomeViewController.h"
 
-#import <TFHpple.h>
-#import "KYNetManager.h"
 #import "KYListCell.h"
 #import "KYComicsModel.h"
-#import <MJExtension.h>
-#import <UIImageView+WebCache.h>
+#import "KYReadingViewController.h"
 
 #define ITEM_MARGIN 3.0
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface KYHomeViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *comics;
 
 @end
 
-@implementation ViewController
+@implementation KYHomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,7 +89,8 @@
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     KYComicsModel *comic = self.comics[indexPath.item];
-    NSLog(@"查看 ====> %@", comic.title);
+    KYReadingViewController *readingVC = [[KYReadingViewController alloc] initWithComic:comic];
+    [self.navigationController pushViewController:readingVC animated:YES];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

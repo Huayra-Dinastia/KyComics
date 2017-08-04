@@ -9,7 +9,6 @@
 #import "KYListCell.h"
 
 #import "KYComicsModel.h"
-#import <UIImageView+WebCache.h>
 
 @interface KYListCell ()
 @property (weak, nonatomic) IBOutlet UILabel *labTitle;

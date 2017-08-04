@@ -9,7 +9,6 @@
 #import "KYNetManager.h"
 
 #import <AFNetworking.h>
-#import <TFHpple.h>
 
 #define domain @"https://e-hentai.org"
 

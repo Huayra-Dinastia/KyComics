@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-1852" y="-879"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="Du5-wS-MKJ">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="pwg-yz-bmq" customClass="ViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="pwg-yz-bmq" customClass="KYHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8z3-Rg-HkT"/>
                         <viewControllerLayoutGuide type="bottom" id="jbk-nz-E3N"/>

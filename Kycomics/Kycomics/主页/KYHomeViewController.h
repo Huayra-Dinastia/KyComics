@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  KYHomeViewController.h
 //  Kycomics
 //
 //  Created by HongYi on 2017/8/3.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface KYHomeViewController : UIViewController
 
 
 @end
