@@ -50,8 +50,9 @@
 }
 
 - (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
+    urlString = [urlString hasPrefix:domain]? urlString: [domain stringByAppendingPathComponent:urlString];
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                                 URLString:[domain stringByAppendingPathComponent:urlString]
+                                                                                 URLString:urlString
                                                                                 parameters:parameters
                                                                                      error:nil];
     
@@ -83,6 +84,7 @@
                                                                         id  _Nullable responseObject,
                                                                         NSError * _Nullable error) {
                                                         if (completion) {
+//                                                            id result = [responseObject mj_JSONObject];
                                                             dispatch_async(dispatch_get_main_queue(), ^{
                                                                 completion(responseObject);
                                                             });

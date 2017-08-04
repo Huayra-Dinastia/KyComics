@@ -77,7 +77,7 @@
                                };
         
         [netManager kyPOST:parm withCompletion:^(id responseObject) {
-            id result = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+            id result = [responseObject mj_JSONObject];
             NSLog(@"%@", result);
             NSMutableArray *comics = [KYComicsModel mj_objectArrayWithKeyValuesArray:result[@"gmetadata"]];
             [self.comics addObjectsFromArray:comics];
