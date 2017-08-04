@@ -88,15 +88,18 @@
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    KYComicsModel *comic = self.comics[indexPath.item];
+    NSLog(@"查看 ====> %@", comic.title);
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.comics.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     KYListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KYListCellId" forIndexPath:indexPath];
-    KYComicsModel *comic = self.comics[indexPath.item];
-    cell.labTitle.text = comic.title_jpn.length? comic.title_jpn: comic.title;
-//    [cell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:comic.thumb]];
+    cell.comic = self.comics[indexPath.item];
     return cell;
 }
 
@@ -104,7 +107,8 @@
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat margin = 7.0;
     CGFloat itemW = (screenWidth - margin) * 0.5;
-    return CGSizeMake(itemW, 185);
+    CGFloat itemH = itemW * 1.45;
+    return CGSizeMake(itemW, itemH);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

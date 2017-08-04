@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class KYComicsModel;
+
 @interface KYListCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *labTitle;
-@property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
+@property (nonatomic, strong) KYComicsModel *comic;
 
 @end
