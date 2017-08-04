@@ -8,5 +8,7 @@ target 'Kycomics' do
   # Pods for Kycomics
     pod 'AFNetworking', '~> 3.0'
     pod 'TFHpple'
+    pod 'MJExtension'
+    pod 'SDWebImage', '~> 4.0'
 
 end

@@ -14,16 +14,24 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - MJExtension (3.0.13)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - TFHpple (2.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - MJExtension
+  - SDWebImage (~> 4.0)
   - TFHpple
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
 
-PODFILE CHECKSUM: 56d007e314d269d5d90bd7fb239a712e712718c4
+PODFILE CHECKSUM: 69600296a9ebb0af6fdcdc22c2e2dbb17d2de631
 
 COCOAPODS: 1.2.0
