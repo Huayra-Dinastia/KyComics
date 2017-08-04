@@ -15,6 +15,7 @@
 		60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CEDA1F33141B003A86BA /* LaunchScreen.storyboard */; };
 		60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEE91F33461B003A86BA /* KYNetManager.m */; };
 		60E8CEED1F34146F003A86BA /* KYListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEEC1F34146F003A86BA /* KYListCell.m */; };
+		60E8CEF11F341688003A86BA /* KYComicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEF01F341688003A86BA /* KYComicsModel.m */; };
 		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,8 @@
 		60E8CEE91F33461B003A86BA /* KYNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYNetManager.m; sourceTree = "<group>"; };
 		60E8CEEB1F34146F003A86BA /* KYListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYListCell.h; sourceTree = "<group>"; };
 		60E8CEEC1F34146F003A86BA /* KYListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYListCell.m; sourceTree = "<group>"; };
+		60E8CEEF1F341688003A86BA /* KYComicsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYComicsModel.h; sourceTree = "<group>"; };
+		60E8CEF01F341688003A86BA /* KYComicsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYComicsModel.m; sourceTree = "<group>"; };
 		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -72,6 +75,7 @@
 		60E8CECB1F33141B003A86BA /* Kycomics */ = {
 			isa = PBXGroup;
 			children = (
+				60E8CEEE1F341644003A86BA /* Models */,
 				60E8CEE41F334575003A86BA /* NetTools */,
 				60E8CEEB1F34146F003A86BA /* KYListCell.h */,
 				60E8CEEC1F34146F003A86BA /* KYListCell.m */,
@@ -104,6 +108,15 @@
 				60E8CEE91F33461B003A86BA /* KYNetManager.m */,
 			);
 			path = NetTools;
+			sourceTree = "<group>";
+		};
+		60E8CEEE1F341644003A86BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				60E8CEEF1F341688003A86BA /* KYComicsModel.h */,
+				60E8CEF01F341688003A86BA /* KYComicsModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		68B6444B08EB8B9D91E3D0A7 /* Pods */ = {
@@ -251,6 +264,7 @@
 				60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */,
 				60E8CEED1F34146F003A86BA /* KYListCell.m in Sources */,
 				60E8CECE1F33141B003A86BA /* main.m in Sources */,
+				60E8CEF11F341688003A86BA /* KYComicsModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
