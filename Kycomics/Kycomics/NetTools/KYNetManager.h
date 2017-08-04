@@ -11,6 +11,7 @@
 @interface KYNetManager : NSObject
 
 + (instancetype)manager;
+- (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion;
 - (void)kyGET:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion;
 - (void)kyPOST:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion;
 

@@ -44,9 +44,14 @@
     return self;
 }
 
+#pragma mark - HTTPMethod: GET
 - (void)kyGET:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
+    [self kyGET:nil parameters:parameters withCompletion:completion];
+}
+
+- (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                                 URLString:domain
+                                                                                 URLString:[domain stringByAppendingPathComponent:urlString]
                                                                                 parameters:parameters
                                                                                      error:nil];
     
@@ -60,11 +65,12 @@
                                                             });
                                                         }
                                                         
-    }];
+                                                    }];
     
     [task resume];
 }
 
+#pragma mark - HTTPMethod: POST
 - (void)kyPOST:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
                                                                                  URLString:[domain stringByAppendingPathComponent:@"api.php"]
