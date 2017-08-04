@@ -15,6 +15,8 @@
 #import <MJExtension.h>
 #import <UIImageView+WebCache.h>
 
+#define ITEM_MARGIN 3.0
+
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray *comics;
@@ -105,18 +107,17 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat margin = 7.0;
-    CGFloat itemW = (screenWidth - margin) * 0.5;
+    CGFloat itemW = (screenWidth - ITEM_MARGIN) * 0.5;
     CGFloat itemH = itemW * 1.45;
     return CGSizeMake(itemW, itemH);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 7.0;
+    return ITEM_MARGIN;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 7.0;
+    return ITEM_MARGIN;
 }
 
 #pragma mark - getter & setter
