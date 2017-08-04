@@ -22,7 +22,7 @@
 - (void)setComic:(KYComicsModel *)comic {
     _comic = comic;
     
-    self.labTitle.text = _comic.title_jpn;
+    self.labTitle.text = _comic.title_jpn.length? _comic.title_jpn: _comic.title;
     self.labFileCount.text = _comic.filecount;
 //    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:_comic.thumb]];
 }
