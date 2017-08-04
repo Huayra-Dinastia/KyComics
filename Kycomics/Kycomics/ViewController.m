@@ -11,9 +11,13 @@
 #import <TFHpple.h>
 #import "KYNetManager.h"
 #import "KYListCell.h"
+#import "KYComicsModel.h"
+#import <MJExtension.h>
+#import <UIImageView+WebCache.h>
 
-@interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSMutableArray *comics;
 
 @end
 
@@ -76,20 +80,47 @@
         [netManager kyPOST:parm withCompletion:^(id responseObject) {
             id result = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
             NSLog(@"%@", result);
-            
+            NSMutableArray *comics = [KYComicsModel mj_objectArrayWithKeyValuesArray:result[@"gmetadata"]];
+            [self.comics addObjectsFromArray:comics];
+            [self.collectionView reloadData];
         }];
     }];
 }
 
-#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    return self.comics.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     KYListCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KYListCellId" forIndexPath:indexPath];
-    cell.labTitle.text = @"测试";
+    KYComicsModel *comic = self.comics[indexPath.item];
+    cell.labTitle.text = comic.title_jpn.length? comic.title_jpn: comic.title;
+//    [cell.thumbImageView sd_setImageWithURL:[NSURL URLWithString:comic.thumb]];
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat margin = 7.0;
+    CGFloat itemW = (screenWidth - margin) * 0.5;
+    return CGSizeMake(itemW, 185);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 7.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 7.0;
+}
+
+#pragma mark - getter & setter
+- (NSMutableArray *)comics {
+    if (nil == _comics) {
+        _comics = [NSMutableArray array];
+    }
+    return _comics;
 }
 
 @end

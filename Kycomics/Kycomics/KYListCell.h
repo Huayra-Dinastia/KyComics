@@ -10,5 +10,6 @@
 
 @interface KYListCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *labTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
 
 @end
