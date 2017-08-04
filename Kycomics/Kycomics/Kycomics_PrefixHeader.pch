@@ -9,4 +9,9 @@
 #ifndef Kycomics_PrefixHeader_pch
 #define Kycomics_PrefixHeader_pch
 
+#import <TFHpple.h>
+#import "KYNetManager.h"
+#import <MJExtension.h>
+#import <UIImageView+WebCache.h>
+
 #endif /* Kycomics_PrefixHeader_pch */
