@@ -12,7 +12,9 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@interface KYReadingViewController ()
+@interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *pages;
 
 @end
 
@@ -96,6 +98,12 @@
                             
                             NSString *src = node.attributes[@"src"];
                             NSLog(@"%@", src);
+                            [self.pages addObject:src];
+//                            [self.tableView reloadData];
+                            UIImageView *imageView = [[UIImageView alloc] init];
+                            [imageView sd_setImageWithURL:[NSURL URLWithString:src]];
+                            imageView.bounds = self.view.bounds;
+                            [self.view addSubview:imageView];
                         }];
                         
                         return ;
@@ -104,6 +112,43 @@
             }
         }];
     }];
+}
+
+#pragma UITableViewDelegate, UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    if (nil == cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    }
+    
+    NSString *urlString = self.pages.lastObject;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+    
+    return cell;
+}
+
+- (UITableView *)tableView {
+    if (nil == _tableView) {
+        UITableView *tableView = [[UITableView alloc] init];
+        tableView.bounds = self.view.bounds;
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [self.view addSubview:tableView];
+        
+        _tableView = tableView;
+    }
+    return _tableView;
+}
+
+- (NSMutableArray *)pages {
+    if (nil == _pages) {
+        _pages = [NSMutableArray array];
+    }
+    return _pages;
 }
 
 @end
