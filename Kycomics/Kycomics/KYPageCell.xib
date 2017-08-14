@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="203" id="xFq-N0-gWy" customClass="KYPageCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="203"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xFq-N0-gWy" id="b0n-DY-pml">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="202.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vk-gY-ece">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="202.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lpc-Sj-3m8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="202.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lpc-Sj-3m8" secondAttribute="trailing" id="5AH-0N-wOa"/>
+                            <constraint firstItem="lpc-Sj-3m8" firstAttribute="leading" secondItem="8Vk-gY-ece" secondAttribute="leading" id="WSP-aj-Sm1"/>
+                            <constraint firstItem="lpc-Sj-3m8" firstAttribute="top" secondItem="8Vk-gY-ece" secondAttribute="top" id="ctm-Jn-cmx"/>
+                            <constraint firstAttribute="bottom" secondItem="lpc-Sj-3m8" secondAttribute="bottom" id="fyc-ie-CEG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="8Vk-gY-ece" secondAttribute="trailing" id="PRj-wa-IoX"/>
+                    <constraint firstItem="8Vk-gY-ece" firstAttribute="top" secondItem="b0n-DY-pml" secondAttribute="top" id="Tuf-or-9Bp"/>
+                    <constraint firstAttribute="bottom" secondItem="8Vk-gY-ece" secondAttribute="bottom" id="UFD-ok-pJ2"/>
+                    <constraint firstItem="8Vk-gY-ece" firstAttribute="leading" secondItem="b0n-DY-pml" secondAttribute="leading" id="Xne-r9-kjV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgView" destination="lpc-Sj-3m8" id="pIy-vE-Tjx"/>
+            </connections>
+            <point key="canvasLocation" x="101" y="5"/>
+        </tableViewCell>
+    </objects>
+</document>

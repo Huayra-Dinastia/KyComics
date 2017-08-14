@@ -10,5 +10,7 @@ target 'Kycomics' do
     pod 'TFHpple'
     pod 'MJExtension'
     pod 'SDWebImage', '~> 4.0'
+    pod 'XXNibBridge', '~> 2.2'
+    pod 'Masonry'
 
 end
