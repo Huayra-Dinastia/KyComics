@@ -12,8 +12,9 @@
 #import "KYPageCell.h"
 #import "KYNetManager+EHentai.h"
 #import "KYImageOperation.h"
+#import <UITableView+FDTemplateLayoutCell.h>
 
-#import <JavaScriptCore/JavaScriptCore.h>
+//#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak) UITableView *tableView;
@@ -77,7 +78,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
+    NSURL *imgURL = self.pages[indexPath.row];
+    return [tableView fd_heightForCellWithIdentifier:[KYPageCell xx_nibID] configuration:^(KYPageCell *cell) {
+        [cell.imgView sd_setImageWithURL:imgURL];
+    }];
 }
 
 - (UITableView *)tableView {
