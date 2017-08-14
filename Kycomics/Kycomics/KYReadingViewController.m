@@ -14,49 +14,51 @@
 #import "KYImageOperation.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 
-//#import <JavaScriptCore/JavaScriptCore.h>
+
+static NSString *KYPageCellId = @"KYPageCellId";
 
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) KYComicsModel *comic;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *pages;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @end
 
-@implementation KYReadingViewController {
-    KYComicsModel *_comic;
-}
+@implementation KYReadingViewController
 
-- (instancetype)initWithComic:(KYComicsModel *)comic {
-    if (self = [super init]) {
-        _comic = comic;
-    }
-    return self;
++ (instancetype)instanceWithComic:(KYComicsModel *)comic {
+    KYReadingViewController *vc = [KYReadingViewController xx_instantiateFromStoryboardNamed:@"KYReadingViewController"];
+    vc.comic = comic;
+    return vc;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor orangeColor];
-    NSLog(@"Reading =====> %@", _comic.title);
+//    self.view.backgroundColor = [UIColor orangeColor];
+    NSLog(@"Reading =====> %@", self.comic.title);
     
-    [[KYNetManager manager] getPageURLs:_comic complection:^(NSArray *imgPageURLs) {
+    [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *imgPageURLs) {
         for (NSString *imgPageURL in imgPageURLs) {
             KYImageOperation *operation = [[KYImageOperation alloc] initWithURL:imgPageURL complection:^(NSString *imgURL) {
-                
-                
-                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:imgURL]
-                                                            options:SDWebImageProgressiveDownload
-                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                    
-                } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-                    if (finished) {
-                        [self.pages addObject:imageURL];
-                        [self.tableView reloadData];
-                    }
-                }];
+//                http://1.249.129.170:6112/h/f77b22c7e8be53d8d2cc6799e524d6bd49c94ad3-441914-1280-1807-jpg/keystamp=1502713200-60cfbaa731;fileindex=54562424;xres=1280/000.jpg
+                // 配置图片Cell大小
+                [self.pages addObject:imgURL];
+                [self.tableView reloadData];
+//                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:imgURL]
+//                                                            options:SDWebImageProgressiveDownload
+//                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+//                                                               NSLog(@"%tu %tu %@", receivedSize, expectedSize, targetURL);
+//                } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+//                    if (finished) {
+//                        [self.pages addObject:imageURL];
+//                        [self.tableView reloadData];
+//                    }
+//                }];
             }];
             [self.operationQueue addOperation:operation];
+            break;
         }
     }];
 }
@@ -67,27 +69,33 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KYPageCell *cell = [tableView dequeueReusableCellWithIdentifier:[KYPageCell xx_nibID]];
+    KYPageCell *cell = [tableView dequeueReusableCellWithIdentifier:KYPageCellId];
     
-//    NSString *urlString = self.pages[indexPath.row];
+    NSString *urlString = self.pages[indexPath.row];
 //    cell.imageView.image = self.pages[indexPath.row];
-    NSURL *imgURL = self.pages[indexPath.row];
-    [cell.imgView sd_setImageWithURL:imgURL];
+//    NSURL *imgURL = self.pages[indexPath.row];
+//    [cell.imgView sd_setImageWithURL:imgURL];
+    [cell setupWithImageURL:[NSURL URLWithString:urlString]];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSURL *imgURL = self.pages[indexPath.row];
-    return [tableView fd_heightForCellWithIdentifier:[KYPageCell xx_nibID] configuration:^(KYPageCell *cell) {
-        [cell.imgView sd_setImageWithURL:imgURL];
-    }];
+    NSString *urlString = self.pages[indexPath.row];
+    if (!urlString) {
+        return 0;
+    }
+    return 200;
+//    NSURL *imgURL = self.pages[indexPath.row];
+//    return [tableView fd_heightForCellWithIdentifier:KYPageCellId configuration:^(KYPageCell *cell) {
+//        [cell.imgView sd_setImageWithURL:imgURL];
+//    }];
 }
 
 - (UITableView *)tableView {
     if (nil == _tableView) {
         UITableView *tableView = [[UITableView alloc] init];
-        [tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:[KYPageCell xx_nibID]];
+        [tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:KYPageCellId];
         tableView.delegate = self;
         tableView.dataSource = self;
         [self.view addSubview:tableView];

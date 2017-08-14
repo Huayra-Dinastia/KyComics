@@ -89,7 +89,7 @@
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     KYComicsModel *comic = self.comics[indexPath.item];
-    KYReadingViewController *readingVC = [[KYReadingViewController alloc] initWithComic:comic];
+    KYReadingViewController *readingVC = [KYReadingViewController instanceWithComic:comic];
     [self.navigationController pushViewController:readingVC animated:YES];
 }
 

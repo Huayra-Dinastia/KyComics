@@ -11,6 +11,6 @@
 @class KYComicsModel;
 
 @interface KYReadingViewController : UIViewController
-- (instancetype)initWithComic:(KYComicsModel *)comic;
++ (instancetype)instanceWithComic:(KYComicsModel *)comic;
 
 @end

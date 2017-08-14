@@ -21,6 +21,7 @@
 		60E96C801F3AA7E1001CF1BD /* KYPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */; };
 		60FF761B1F4181370070C2F9 /* KYNetManager+EHentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */; };
 		60FF761E1F41A70D0070C2F9 /* KYImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF761D1F41A70D0070C2F9 /* KYImageOperation.m */; };
+		60FF76201F41C6B60070C2F9 /* KYReadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */; };
 		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KYNetManager+EHentai.m"; sourceTree = "<group>"; };
 		60FF761C1F41A70D0070C2F9 /* KYImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYImageOperation.h; sourceTree = "<group>"; };
 		60FF761D1F41A70D0070C2F9 /* KYImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYImageOperation.m; sourceTree = "<group>"; };
+		60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KYReadingViewController.storyboard; sourceTree = "<group>"; };
 		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 				60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */,
 				60E8CEFA1F344760003A86BA /* KYReadingViewController.h */,
 				60E8CEFB1F344760003A86BA /* KYReadingViewController.m */,
+				60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */,
 				60E8CECF1F33141B003A86BA /* AppDelegate.h */,
 				60E8CED01F33141B003A86BA /* AppDelegate.m */,
 				60E8CED51F33141B003A86BA /* Main.storyboard */,
@@ -233,6 +236,7 @@
 				60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */,
 				60E8CED91F33141B003A86BA /* Assets.xcassets in Resources */,
 				60E8CED71F33141B003A86BA /* Main.storyboard in Resources */,
+				60FF76201F41C6B60070C2F9 /* KYReadingViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

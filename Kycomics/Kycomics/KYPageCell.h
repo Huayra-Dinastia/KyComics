@@ -11,4 +11,6 @@
 @interface KYPageCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
+- (void)setupWithImageURL:(NSURL *)imgURL;
+
 @end
