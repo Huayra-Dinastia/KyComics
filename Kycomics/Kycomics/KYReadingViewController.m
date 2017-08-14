@@ -42,8 +42,18 @@
     [[KYNetManager manager] getPageURLs:_comic complection:^(NSArray *imgPageURLs) {
         for (NSString *imgPageURL in imgPageURLs) {
             KYImageOperation *operation = [[KYImageOperation alloc] initWithURL:imgPageURL complection:^(NSString *imgURL) {
-                [self.pages addObject:imgURL];
-                [self.tableView reloadData];
+                
+                
+                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:imgURL]
+                                                            options:SDWebImageProgressiveDownload
+                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                    
+                } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                    if (finished) {
+                        [self.pages addObject:imageURL];
+                        [self.tableView reloadData];
+                    }
+                }];
             }];
             [self.operationQueue addOperation:operation];
         }
@@ -58,8 +68,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KYPageCell *cell = [tableView dequeueReusableCellWithIdentifier:[KYPageCell xx_nibID]];
     
-    NSString *urlString = self.pages[indexPath.row];
-    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+//    NSString *urlString = self.pages[indexPath.row];
+//    cell.imageView.image = self.pages[indexPath.row];
+    NSURL *imgURL = self.pages[indexPath.row];
+    [cell.imgView sd_setImageWithURL:imgURL];
     
     return cell;
 }

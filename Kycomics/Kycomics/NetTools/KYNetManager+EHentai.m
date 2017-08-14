@@ -20,13 +20,6 @@
 
 @implementation KYNetManager (EHentai)
 
-//- (void)getShowkeys:(NSArray *)imgPageURLs{
-//    for (NSString *imgPageURL in imgPageURLs) {
-//        KYImageOperation *operation = [[KYImageOperation alloc] initWithURL:imgPageURL];
-//        [self.operationQueue addOperation:operation];
-//    }
-//}
-
 - (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection {
     NSString *gid = comic.gid;
     NSString *token = comic.token;
@@ -47,8 +40,6 @@
             [imgPageUrls addObject:urlString];
         }
         
-//        NSLog(@"%@", imgPageUrls);
-//        [self getShowkeys:imgPageUrls];
         if (complection) {
             complection(imgPageUrls);
         }
@@ -72,7 +63,7 @@
                 if (![showkey.toString isEqualToString:@"undefined"]) {
 #warning showkey不变，只需获取一次
 //                    NSLog(@"%@ ====> %@", imgPageURL, showkey.toString);
-//                    [self requestPageImg:urlString showkey:showkey.toString];
+
                     if (completion) {
                         completion(showkey.toString);
                     }
@@ -107,8 +98,7 @@
         
         NSString *src = node.attributes[@"src"];
         NSLog(@"========> %@", src);
-//        [self.pages addObject:src];
-//        [self.tableView reloadData];
+        
         if (complection) {
             complection(src);
         }
