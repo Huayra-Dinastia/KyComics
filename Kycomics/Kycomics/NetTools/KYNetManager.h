@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^KYSUCESS_BLOCK)(id responseObject);
+
 @interface KYNetManager : NSObject
 
 + (instancetype)manager;
-- (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion;
-- (void)kyGET:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion;
-- (void)kyPOST:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion;
+- (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion;
+- (void)kyGET:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion;
+- (void)kyPOST:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion;
 
 @end

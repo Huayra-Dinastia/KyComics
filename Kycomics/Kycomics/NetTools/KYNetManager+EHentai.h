@@ -12,5 +12,7 @@
 
 @interface KYNetManager (EHentai)
 
-- (void)getPageURLs:(KYComicsModel *)comic;
+- (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection;
+- (void)getShowkey:(NSString *)imgPageURL complection:(KYSUCESS_BLOCK)completion;
+- (void)getPageImage:(NSString *)urlString showkey:(NSString *)showkey completion:(KYSUCESS_BLOCK)complection;
 @end

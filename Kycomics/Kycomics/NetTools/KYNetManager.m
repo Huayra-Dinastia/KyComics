@@ -45,11 +45,11 @@
 }
 
 #pragma mark - HTTPMethod: GET
-- (void)kyGET:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
+- (void)kyGET:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion {
     [self kyGET:nil parameters:parameters withCompletion:completion];
 }
 
-- (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
+- (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion {
     urlString = [urlString hasPrefix:domain]? urlString: [domain stringByAppendingPathComponent:urlString];
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                                  URLString:urlString
@@ -72,7 +72,7 @@
 }
 
 #pragma mark - HTTPMethod: POST
-- (void)kyPOST:(NSDictionary *)parameters withCompletion:(void (^)(id responseObject))completion {
+- (void)kyPOST:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
                                                                                  URLString:[domain stringByAppendingPathComponent:@"api.php"]
                                                                                 parameters:nil

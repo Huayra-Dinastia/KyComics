@@ -11,6 +11,7 @@
 #import "KYComicsModel.h"
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "KYImageOperation.h"
 
 @interface KYNetManager ()
 @property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
@@ -19,16 +20,14 @@
 
 @implementation KYNetManager (EHentai)
 
-- (void)getShowkeys:(NSArray *)imgPageURLs {
-    for (NSString *imgPageURL in imgPageURLs) {
-        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-            [self getShowkey:imgPageURL];
-        }];
-        [self.operationQueue addOperation:operation];
-    }
-}
+//- (void)getShowkeys:(NSArray *)imgPageURLs{
+//    for (NSString *imgPageURL in imgPageURLs) {
+//        KYImageOperation *operation = [[KYImageOperation alloc] initWithURL:imgPageURL];
+//        [self.operationQueue addOperation:operation];
+//    }
+//}
 
-- (void)getPageURLs:(KYComicsModel *)comic {
+- (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection {
     NSString *gid = comic.gid;
     NSString *token = comic.token;
     
@@ -48,12 +47,15 @@
             [imgPageUrls addObject:urlString];
         }
         
-        NSLog(@"%@", imgPageUrls);
-        [self getShowkeys:imgPageUrls];
+//        NSLog(@"%@", imgPageUrls);
+//        [self getShowkeys:imgPageUrls];
+        if (complection) {
+            complection(imgPageUrls);
+        }
     }];
 }
 
-- (void)getShowkey:(NSString *)imgPageURL {
+- (void)getShowkey:(NSString *)imgPageURL complection:(KYSUCESS_BLOCK)completion {
     [self kyGET:imgPageURL parameters:nil withCompletion:^(id responseObject) {
         // 解析网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
@@ -69,15 +71,50 @@
                 JSValue *showkey = [jsContext evaluateScript:@"showkey"];
                 if (![showkey.toString isEqualToString:@"undefined"]) {
 #warning showkey不变，只需获取一次
-                    NSLog(@"%@ ====> %@", imgPageURL, showkey.toString);
+//                    NSLog(@"%@ ====> %@", imgPageURL, showkey.toString);
 //                    [self requestPageImg:urlString showkey:showkey.toString];
-                    
+                    if (completion) {
+                        completion(showkey.toString);
+                    }
                     return ;
                 }
             }
         }
     }];
 }
+
+- (void)getPageImage:(NSString *)urlString showkey:(NSString *)showkey completion:(KYSUCESS_BLOCK)complection {
+    //https://e-hentai.org/s/1a8e31f2c6/1029334-2
+    //                          -2        -1
+    NSArray *strs = [urlString componentsSeparatedByString:@"/"];
+    NSArray *strs2 = [strs.lastObject componentsSeparatedByString:@"-"];
+    NSString *gid = strs2.firstObject;
+    NSString *page = strs2.lastObject;
+    NSString *imgkey = strs[strs.count - 2];
+    
+    NSDictionary *parm = @{
+                           @"method": @"showpage",
+                           @"gid": gid,
+                           @"page": page,
+                           @"imgkey": imgkey,
+                           @"showkey": showkey
+                           };
+    
+    [[KYNetManager manager] kyPOST:parm withCompletion:^(id responseObject) {
+        id i3 = [responseObject mj_JSONObject][@"i3"];
+        TFHpple *doc = [[TFHpple alloc] initWithHTMLData:[i3 mj_JSONData]];
+        TFHppleElement *node = [doc searchWithXPathQuery:@"//a/img"].lastObject;
+        
+        NSString *src = node.attributes[@"src"];
+        NSLog(@"========> %@", src);
+//        [self.pages addObject:src];
+//        [self.tableView reloadData];
+        if (complection) {
+            complection(src);
+        }
+    }];
+}
+
 
 - (NSOperationQueue *)operationQueue {
     static dispatch_once_t onceToken;
