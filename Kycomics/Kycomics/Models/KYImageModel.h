@@ -10,8 +10,13 @@
 
 @interface KYImageModel : NSObject
 @property (nonatomic, copy) NSString *imgURL;
+@property (nonatomic, copy) NSString *pageURL;
 @property (nonatomic, assign) double progress;
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, assign) CGSize imgSize;
+
+@property (nonatomic, assign, readonly) CGSize imgSize;
+@property (nonatomic, assign, readonly) NSInteger index;
+
+- (instancetype)initWithPageURL:(NSString *)pageURL imgURL:(NSString *)imgURL;
 
 @end

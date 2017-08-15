@@ -50,6 +50,9 @@
         // 解析网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray<TFHppleElement *> *nodes = [doc searchWithXPathQuery:@"//script[@type='text/javascript']"];
+        if (nodes.count <= 0) {
+            return ;
+        }
         
         for (NSUInteger i = nodes.count - 1; i > 0; i--) {
             TFHppleElement *node = nodes[i];

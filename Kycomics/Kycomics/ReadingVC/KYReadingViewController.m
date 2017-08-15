@@ -43,7 +43,8 @@ static NSString *KYPageCellId = @"KYPageCellId";
             if (self.showkey.length) {
                 // 获取图片地址
                 [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-                    [[KYNetManager manager] loadImage:imgURL];
+                    KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
+                    [[KYNetManager manager] loadImage:imageModel];
                     [self.tableView reloadData];
                 }];
             } else {
@@ -51,7 +52,8 @@ static NSString *KYPageCellId = @"KYPageCellId";
                 [[KYNetManager manager] getShowkey:imgPageURL complection:^(NSString *showkey) {
                     self.showkey = showkey;
                     [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-                        [[KYNetManager manager] loadImage:imgURL];
+                        KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
+                        [[KYNetManager manager] loadImage:imageModel];
                         [self.tableView reloadData];
                     }];
                 }];

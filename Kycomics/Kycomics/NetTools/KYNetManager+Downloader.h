@@ -8,9 +8,11 @@
 
 #import "KYNetManager.h"
 
+@class KYImageModel;
+
 @interface KYNetManager (Downloader)
 @property (nonatomic, strong) NSMutableArray *downloadingQueue;
 
-- (void)loadImage:(NSString *)imgURL;
+- (void)loadImage:(KYImageModel *)imageModel;
 - (void)cancelAllDownloads;
 @end

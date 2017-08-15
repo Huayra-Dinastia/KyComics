@@ -17,12 +17,10 @@
 
 @implementation KYNetManager (Downloader)
 
-- (void)loadImage:(NSString *)imgURL {
-    KYImageModel *imageModel = [[KYImageModel alloc] init];
-    imageModel.imgURL = imgURL;
+- (void)loadImage:(KYImageModel *)imageModel {
     
     SDWebImageDownloadToken *downloadToken = [[SDWebImageDownloader sharedDownloader]
-                                              downloadImageWithURL:[NSURL URLWithString:imgURL] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                                              downloadImageWithURL:[NSURL URLWithString:imageModel.imgURL] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                                                   // 下载进度
                                                   if (expectedSize <= 0 || receivedSize <= 0) {
                                                       return ;
@@ -40,6 +38,10 @@
     
     NSMutableArray *tmpArr = self.downloadingQueue;
     [tmpArr addObject:imageModel];
+    [tmpArr sortUsingComparator:^NSComparisonResult(KYImageModel * _Nonnull obj1, KYImageModel * _Nonnull obj2) {
+        return obj1.index > obj2.index;
+    }];
+    
 }
 
 - (void)cancelAllDownloads {

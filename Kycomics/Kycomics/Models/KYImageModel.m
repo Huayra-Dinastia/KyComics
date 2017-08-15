@@ -8,7 +8,18 @@
 
 #import "KYImageModel.h"
 
-@implementation KYImageModel
+@implementation KYImageModel {
+    CGSize _imgSize;
+    NSInteger _index;
+}
+
+- (instancetype)initWithPageURL:(NSString *)pageURL imgURL:(NSString *)imgURL {
+    if (self = [super init]) {
+        self.pageURL = pageURL;
+        self.imgURL = imgURL;
+    }
+    return self;
+}
 
 - (CGSize)imgSize {
     if (CGSizeEqualToSize(CGSizeZero, _imgSize)) {
@@ -30,6 +41,14 @@
         _imgSize = CGSizeMake(width * scale, height * scale);
     }
     return _imgSize;
+}
+
+- (NSInteger)index {
+    if (0 == _index) {
+//        https://e-hentai.org/s/9ba7beaebf/1101469-1
+         _index = [[self.pageURL componentsSeparatedByString:@"-"].lastObject integerValue];
+    }
+    return _index;
 }
 
 @end

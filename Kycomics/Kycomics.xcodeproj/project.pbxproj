@@ -218,6 +218,7 @@
 				TargetAttributes = {
 					60E8CEC81F33141B003A86BA = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2YZP2J9464;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -439,6 +440,7 @@
 			baseConfigurationReference = 444B4327CA57694E1CB6E200 /* Pods-Kycomics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2YZP2J9464;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Kycomics/Kycomics_PrefixHeader.pch";
 				INFOPLIST_FILE = Kycomics/Info.plist;
@@ -454,6 +456,7 @@
 			baseConfigurationReference = 1B2E4667FB73479A8820B88A /* Pods-Kycomics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2YZP2J9464;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Kycomics/Kycomics_PrefixHeader.pch";
 				INFOPLIST_FILE = Kycomics/Info.plist;
