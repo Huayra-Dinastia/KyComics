@@ -51,6 +51,7 @@
     self.progressView.backgroundColor = [UIColor clearColor];
 }
 
+#pragma mark - getter & setter
 - (UIView *)progressView {
     if (nil == _progressView) {
         UIView *progressView = [[UIView alloc] init];

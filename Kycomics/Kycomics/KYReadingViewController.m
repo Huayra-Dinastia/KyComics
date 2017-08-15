@@ -19,7 +19,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
 
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) KYComicsModel *comic;
-@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *pages;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
@@ -36,31 +36,39 @@ static NSString *KYPageCellId = @"KYPageCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.view.backgroundColor = [UIColor orangeColor];
+    [self.tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:KYPageCellId];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     NSLog(@"Reading =====> %@", self.comic.title);
     
     [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *imgPageURLs) {
         for (NSString *imgPageURL in imgPageURLs) {
             KYImageOperation *operation = [[KYImageOperation alloc] initWithURL:imgPageURL complection:^(NSString *imgURL) {
-//                http://1.249.129.170:6112/h/f77b22c7e8be53d8d2cc6799e524d6bd49c94ad3-441914-1280-1807-jpg/keystamp=1502713200-60cfbaa731;fileindex=54562424;xres=1280/000.jpg
+//                http://124.244.74.23:8484/h/659adba1360f9a1ea2618bf2834b8fdbfb50ad96-373906-851-1202-jpg/keystamp=1502769300-8f294c2d8d;fileindex=54577164;xres=org/p0.jpg
+                
                 // 配置图片Cell大小
+                // 对图片排序
                 [self.pages addObject:imgURL];
                 [self.tableView reloadData];
-//                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:imgURL]
-//                                                            options:SDWebImageProgressiveDownload
-//                                                           progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-//                                                               NSLog(@"%tu %tu %@", receivedSize, expectedSize, targetURL);
-//                } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-//                    if (finished) {
-//                        [self.pages addObject:imageURL];
-//                        [self.tableView reloadData];
-//                    }
-//                }];
             }];
             [self.operationQueue addOperation:operation];
-            break;
+//            break;
         }
     }];
+}
+
+- (CGSize)getCellHeight:(NSString *)imgURL {
+    NSArray *strs = [imgURL componentsSeparatedByString:@"/"];
+    strs = [strs[strs.count - 3] componentsSeparatedByString:@"-"];
+    
+    CGFloat width = [strs[strs.count - 3] floatValue];
+    CGFloat height = [strs[strs.count - 2] floatValue];
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    CGFloat scale = screenWidth / width;
+    return CGSizeMake(width * scale, height * scale);
 }
 
 #pragma UITableViewDelegate, UITableViewDataSource
@@ -72,9 +80,6 @@ static NSString *KYPageCellId = @"KYPageCellId";
     KYPageCell *cell = [tableView dequeueReusableCellWithIdentifier:KYPageCellId];
     
     NSString *urlString = self.pages[indexPath.row];
-//    cell.imageView.image = self.pages[indexPath.row];
-//    NSURL *imgURL = self.pages[indexPath.row];
-//    [cell.imgView sd_setImageWithURL:imgURL];
     [cell setupWithImageURL:[NSURL URLWithString:urlString]];
     
     return cell;
@@ -85,28 +90,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
     if (!urlString) {
         return 0;
     }
-    return 200;
-//    NSURL *imgURL = self.pages[indexPath.row];
-//    return [tableView fd_heightForCellWithIdentifier:KYPageCellId configuration:^(KYPageCell *cell) {
-//        [cell.imgView sd_setImageWithURL:imgURL];
-//    }];
-}
-
-- (UITableView *)tableView {
-    if (nil == _tableView) {
-        UITableView *tableView = [[UITableView alloc] init];
-        [tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:KYPageCellId];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        [self.view addSubview:tableView];
-        
-        [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.bottom.right.equalTo(self.view);
-        }];
-        
-        _tableView = tableView;
-    }
-    return _tableView;
+    return [self getCellHeight:urlString].height;
 }
 
 - (NSMutableArray *)pages {

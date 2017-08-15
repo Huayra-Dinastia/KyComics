@@ -28,6 +28,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self requestData];
+    
 }
 
 - (void)requestData {

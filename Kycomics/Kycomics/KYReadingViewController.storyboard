@@ -81,14 +81,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A10-HZ-B4w" firstAttribute="leading" secondItem="g5C-cN-REW" secondAttribute="leading" id="6ue-Rt-4C1"/>
-                            <constraint firstItem="z1O-hY-abp" firstAttribute="top" secondItem="A10-HZ-B4w" secondAttribute="bottom" id="Bqm-a3-bQS"/>
-                            <constraint firstItem="A10-HZ-B4w" firstAttribute="top" secondItem="P5k-yv-ztd" secondAttribute="bottom" id="OdI-aH-Cnz"/>
-                            <constraint firstAttribute="trailing" secondItem="A10-HZ-B4w" secondAttribute="trailing" id="snW-oZ-sub"/>
+                            <constraint firstItem="A10-HZ-B4w" firstAttribute="leading" secondItem="g5C-cN-REW" secondAttribute="leading" id="Bpf-Re-d1y"/>
+                            <constraint firstAttribute="bottom" secondItem="A10-HZ-B4w" secondAttribute="bottom" id="Qxo-nK-UVc"/>
+                            <constraint firstAttribute="trailing" secondItem="A10-HZ-B4w" secondAttribute="trailing" id="Yha-xv-RGq"/>
+                            <constraint firstItem="A10-HZ-B4w" firstAttribute="top" secondItem="P5k-yv-ztd" secondAttribute="bottom" id="ys6-0I-W76"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="bIe-qj-P3V"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="A10-HZ-B4w" id="XjG-ns-Hxa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GA9-Sn-Cuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
