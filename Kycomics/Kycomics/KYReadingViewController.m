@@ -11,7 +11,6 @@
 #import "KYComicsModel.h"
 #import "KYPageCell.h"
 #import "KYNetManager+EHentai.h"
-#import "KYImageOperation.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 
 
@@ -22,6 +21,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *pages;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
+@property (nonatomic, copy) NSString *showkey;
 
 @end
 
@@ -36,25 +36,37 @@ static NSString *KYPageCellId = @"KYPageCellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:KYPageCellId];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    [self setupUI];
+    
     NSLog(@"Reading =====> %@", self.comic.title);
     
     [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *imgPageURLs) {
         for (NSString *imgPageURL in imgPageURLs) {
-            KYImageOperation *operation = [[KYImageOperation alloc] initWithURL:imgPageURL complection:^(NSString *imgURL) {
-//                http://124.244.74.23:8484/h/659adba1360f9a1ea2618bf2834b8fdbfb50ad96-373906-851-1202-jpg/keystamp=1502769300-8f294c2d8d;fileindex=54577164;xres=org/p0.jpg
-                
-                // 配置图片Cell大小
-                // 对图片排序
-                [self.pages addObject:imgURL];
-                [self.tableView reloadData];
-            }];
-            [self.operationQueue addOperation:operation];
+            if (self.showkey.length) {
+                // 获取图片地址
+                [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
+                    [self.pages addObject:imgURL];
+                    [self.tableView reloadData];
+                }];
+            } else {
+                // 获取showkey
+                [[KYNetManager manager] getShowkey:imgPageURL complection:^(NSString *showkey) {
+                    self.showkey = showkey;
+                    [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
+                        [self.pages addObject:imgURL];
+                        [self.tableView reloadData];
+                    }];
+                }];
+            }
 //            break;
         }
     }];
+}
+
+- (void)setupUI {
+    [self.tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:KYPageCellId];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (CGSize)getCellHeight:(NSString *)imgURL {

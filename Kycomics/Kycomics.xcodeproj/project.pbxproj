@@ -20,7 +20,6 @@
 		60E96C7E1F3AA7CE001CF1BD /* KYPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E96C7D1F3AA7CE001CF1BD /* KYPageCell.m */; };
 		60E96C801F3AA7E1001CF1BD /* KYPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */; };
 		60FF761B1F4181370070C2F9 /* KYNetManager+EHentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */; };
-		60FF761E1F41A70D0070C2F9 /* KYImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF761D1F41A70D0070C2F9 /* KYImageOperation.m */; };
 		60FF76201F41C6B60070C2F9 /* KYReadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */; };
 		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
@@ -52,8 +51,6 @@
 		60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYPageCell.xib; sourceTree = "<group>"; };
 		60FF76191F4181370070C2F9 /* KYNetManager+EHentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KYNetManager+EHentai.h"; sourceTree = "<group>"; };
 		60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KYNetManager+EHentai.m"; sourceTree = "<group>"; };
-		60FF761C1F41A70D0070C2F9 /* KYImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYImageOperation.h; sourceTree = "<group>"; };
-		60FF761D1F41A70D0070C2F9 /* KYImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYImageOperation.m; sourceTree = "<group>"; };
 		60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KYReadingViewController.storyboard; sourceTree = "<group>"; };
 		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -127,8 +124,6 @@
 				60E8CEE91F33461B003A86BA /* KYNetManager.m */,
 				60FF76191F4181370070C2F9 /* KYNetManager+EHentai.h */,
 				60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */,
-				60FF761C1F41A70D0070C2F9 /* KYImageOperation.h */,
-				60FF761D1F41A70D0070C2F9 /* KYImageOperation.m */,
 			);
 			path = NetTools;
 			sourceTree = "<group>";
@@ -300,7 +295,6 @@
 				60E8CEFC1F344760003A86BA /* KYReadingViewController.m in Sources */,
 				60E8CEF91F3446F0003A86BA /* KYListCell.m in Sources */,
 				60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */,
-				60FF761E1F41A70D0070C2F9 /* KYImageOperation.m in Sources */,
 				60FF761B1F4181370070C2F9 /* KYNetManager+EHentai.m in Sources */,
 				60E8CEF61F3446CD003A86BA /* KYHomeViewController.m in Sources */,
 				60E8CECE1F33141B003A86BA /* main.m in Sources */,

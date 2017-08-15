@@ -25,10 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
+    [self setupUI];
     [self requestData];
-    
 }
 
 - (void)requestData {
@@ -85,6 +83,11 @@
             [self.collectionView reloadData];
         }];
     }];
+}
+
+- (void)setupUI {
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout

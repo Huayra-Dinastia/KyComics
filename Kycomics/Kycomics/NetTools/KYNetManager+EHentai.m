@@ -11,7 +11,6 @@
 #import "KYComicsModel.h"
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "KYImageOperation.h"
 
 @interface KYNetManager ()
 @property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
