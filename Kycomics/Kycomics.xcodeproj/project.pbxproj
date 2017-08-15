@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60903D821F430ED200245B31 /* KYGETImageURLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 60903D811F430ED200245B31 /* KYGETImageURLOperation.m */; };
 		60E8CECE1F33141B003A86BA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CECD1F33141B003A86BA /* main.m */; };
 		60E8CED11F33141B003A86BA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CED01F33141B003A86BA /* AppDelegate.m */; };
 		60E8CED71F33141B003A86BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8CED51F33141B003A86BA /* Main.storyboard */; };
@@ -29,6 +30,8 @@
 /* Begin PBXFileReference section */
 		1B2E4667FB73479A8820B88A /* Pods-Kycomics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kycomics.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kycomics/Pods-Kycomics.release.xcconfig"; sourceTree = "<group>"; };
 		444B4327CA57694E1CB6E200 /* Pods-Kycomics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kycomics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kycomics/Pods-Kycomics.debug.xcconfig"; sourceTree = "<group>"; };
+		60903D801F430ED200245B31 /* KYGETImageURLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYGETImageURLOperation.h; sourceTree = "<group>"; };
+		60903D811F430ED200245B31 /* KYGETImageURLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYGETImageURLOperation.m; sourceTree = "<group>"; };
 		60E8CEC91F33141B003A86BA /* Kycomics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kycomics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60E8CECD1F33141B003A86BA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		60E8CECF1F33141B003A86BA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */,
 				60FF77AF1F42D5B70070C2F9 /* KYNetManager+Downloader.h */,
 				60FF77B01F42D5B70070C2F9 /* KYNetManager+Downloader.m */,
+				60903D801F430ED200245B31 /* KYGETImageURLOperation.h */,
+				60903D811F430ED200245B31 /* KYGETImageURLOperation.m */,
 			);
 			path = NetTools;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				60FF77B41F42D9A10070C2F9 /* KYImageModel.m in Sources */,
 				60E8CEF91F3446F0003A86BA /* KYListCell.m in Sources */,
 				60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */,
+				60903D821F430ED200245B31 /* KYGETImageURLOperation.m in Sources */,
 				60FF77AA1F42D56F0070C2F9 /* KYReadingViewController.m in Sources */,
 				60FF761B1F4181370070C2F9 /* KYNetManager+EHentai.m in Sources */,
 				60E8CEF61F3446CD003A86BA /* KYHomeViewController.m in Sources */,

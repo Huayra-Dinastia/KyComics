@@ -14,6 +14,7 @@
 #import "KYNetManager+Downloader.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "KYImageModel.h"
+#import "KYGETImageURLOperation.h"
 
 
 static NSString *KYPageCellId = @"KYPageCellId";
@@ -38,26 +39,31 @@ static NSString *KYPageCellId = @"KYPageCellId";
     
     [self setupUI];
     
-    [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *imgPageURLs) {
-        for (NSString *imgPageURL in imgPageURLs) {
-            if (self.showkey.length) {
-                // 获取图片地址
-                [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-                    KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
-                    [[KYNetManager manager] loadImage:imageModel];
-                    [self.tableView reloadData];
-                }];
-            } else {
-                // 获取showkey
-                [[KYNetManager manager] getShowkey:imgPageURL complection:^(NSString *showkey) {
-                    self.showkey = showkey;
-                    [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-                        KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
-                        [[KYNetManager manager] loadImage:imageModel];
-                        [self.tableView reloadData];
-                    }];
-                }];
-            }
+    [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *pageURLs) {
+        for (NSString *pageURL in pageURLs) {
+            [[[KYGETImageURLOperation alloc] initWithPageURL:pageURL withCompletion:^(NSString *imgURL) {
+                KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:pageURL imgURL:imgURL];
+                [[KYNetManager manager] loadImage:imageModel];
+                [self.tableView reloadData];
+            }] start];
+//            if (self.showkey.length) {
+//                // 获取图片地址
+//                [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
+//                    KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
+//                    [[KYNetManager manager] loadImage:imageModel];
+//                    [self.tableView reloadData];
+//                }];
+//            } else {
+//                // 获取showkey
+//                [[KYNetManager manager] getShowkey:imgPageURL complection:^(NSString *showkey) {
+//                    self.showkey = showkey;
+//                    [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
+//                        KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
+//                        [[KYNetManager manager] loadImage:imageModel];
+//                        [self.tableView reloadData];
+//                    }];
+//                }];
+//            }
 //            break;
         }
     }];
