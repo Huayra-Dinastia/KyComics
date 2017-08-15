@@ -8,33 +8,26 @@
 
 #import "KYPageCell.h"
 
+#import "KYImageModel.h"
+
 @interface KYPageCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) UIView *progressView;
 
 @end
 
 @implementation KYPageCell
 
-- (void)setupWithImageURL:(NSURL *)imgURL {
-    [[SDWebImageManager sharedManager]
-     loadImageWithURL:imgURL
-     options:SDWebImageProgressiveDownload
-     progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-         // 绘制进度条
-         if (expectedSize <= 0 || receivedSize <= 0) {
-             return ;
-         }
-         
-         CGFloat progress = (double)receivedSize / (double)expectedSize;
-         [self showProgress:progress];
-     } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-         if (!finished) {
-             return ;
-         }
-         
-         self.imgView.image = image;
-         [self.progressView removeFromSuperview];
-     }];
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"progress"]) {
+        [self showProgress:self.imageModel.progress];
+    } else if ([keyPath isEqualToString:@"image"]) {
+        [self.progressView removeFromSuperview];
+        self.imgView.image = self.imageModel.image;
+        
+//        [_imageModel removeObserver:self forKeyPath:@"image"];
+//        [_imageModel removeObserver:self forKeyPath:@"progress"];
+    }
 }
 
 - (void)awakeFromNib {
@@ -69,6 +62,22 @@
         _progressView = progressView;
     }
     return _progressView;
+}
+
+- (void)setImageModel:(KYImageModel *)imageModel {
+    [_imageModel removeObserver:self forKeyPath:@"image"];
+    [_imageModel removeObserver:self forKeyPath:@"progress"];
+    
+    _imageModel = imageModel;
+    
+    // 添加观察者
+    [_imageModel addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionOld context:nil];
+    [_imageModel addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionOld context:nil];
+}
+
+- (void)dealloc {
+    [self.imageModel removeObserver:self forKeyPath:@"image"];
+    [self.imageModel removeObserver:self forKeyPath:@"progress"];
 }
 
 @end

@@ -11,7 +11,9 @@
 #import "KYComicsModel.h"
 #import "KYPageCell.h"
 #import "KYNetManager+EHentai.h"
+#import "KYNetManager+Downloader.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import "KYImageModel.h"
 
 
 static NSString *KYPageCellId = @"KYPageCellId";
@@ -38,14 +40,12 @@ static NSString *KYPageCellId = @"KYPageCellId";
     
     [self setupUI];
     
-    NSLog(@"Reading =====> %@", self.comic.title);
-    
     [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *imgPageURLs) {
         for (NSString *imgPageURL in imgPageURLs) {
             if (self.showkey.length) {
                 // 获取图片地址
                 [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-                    [self.pages addObject:imgURL];
+                    [[KYNetManager manager] loadImage:imgURL];
                     [self.tableView reloadData];
                 }];
             } else {
@@ -53,12 +53,12 @@ static NSString *KYPageCellId = @"KYPageCellId";
                 [[KYNetManager manager] getShowkey:imgPageURL complection:^(NSString *showkey) {
                     self.showkey = showkey;
                     [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-                        [self.pages addObject:imgURL];
+                        [[KYNetManager manager] loadImage:imgURL];
                         [self.tableView reloadData];
                     }];
                 }];
             }
-//            break;
+            break;
         }
     }];
 }
@@ -67,49 +67,30 @@ static NSString *KYPageCellId = @"KYPageCellId";
     [self.tableView registerNib:[KYPageCell xx_nib] forCellReuseIdentifier:KYPageCellId];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-}
-
-- (CGSize)getCellHeight:(NSString *)imgURL {
-    NSArray *strs = [imgURL componentsSeparatedByString:@"/"];
-    for (NSInteger i = strs.count - 1; i >= 0; i--) {
-        NSString *str = strs[i];
-        if([str hasSuffix:@"-jpg"]){
-            strs = [str componentsSeparatedByString:@"-"];
-            break;
-        }
-    }
     
-    CGFloat width = [strs[strs.count - 3] floatValue];
-    CGFloat height = [strs[strs.count - 2] floatValue];
-    
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    
-    CGFloat scale = screenWidth / width;
-    return CGSizeMake(width * scale, height * scale);
+    self.title = self.comic.title_jpn;
 }
 
 #pragma UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.pages.count;
+    return [KYNetManager manager].downloadingQueue.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KYPageCell *cell = [tableView dequeueReusableCellWithIdentifier:KYPageCellId];
     
-    NSString *urlString = self.pages[indexPath.row];
-    [cell setupWithImageURL:[NSURL URLWithString:urlString]];
+    KYImageModel *imageModel = [KYNetManager manager].downloadingQueue[indexPath.row];
+    cell.imageModel = imageModel;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *urlString = self.pages[indexPath.row];
-    if (!urlString) {
-        return 0;
-    }
-    return [self getCellHeight:urlString].height;
+    KYImageModel *imageModel = [KYNetManager manager].downloadingQueue[indexPath.row];
+    return imageModel.imgSize.height;
 }
 
+#pragma mark - getter & setter
 - (NSMutableArray *)pages {
     if (nil == _pages) {
         _pages = [NSMutableArray array];
@@ -123,6 +104,12 @@ static NSString *KYPageCellId = @"KYPageCellId";
         _operationQueue.maxConcurrentOperationCount = 1;
     }
     return _operationQueue;
+}
+
+#pragma mark - dealloc
+- (void)dealloc {
+    NSLog(@"dealloc");
+    [[KYNetManager manager] cancelAllDownloads];
 }
 
 @end

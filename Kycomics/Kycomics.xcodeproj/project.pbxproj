@@ -16,11 +16,13 @@
 		60E8CEF11F341688003A86BA /* KYComicsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEF01F341688003A86BA /* KYComicsModel.m */; };
 		60E8CEF61F3446CD003A86BA /* KYHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEF51F3446CD003A86BA /* KYHomeViewController.m */; };
 		60E8CEF91F3446F0003A86BA /* KYListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEF81F3446F0003A86BA /* KYListCell.m */; };
-		60E8CEFC1F344760003A86BA /* KYReadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E8CEFB1F344760003A86BA /* KYReadingViewController.m */; };
-		60E96C7E1F3AA7CE001CF1BD /* KYPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60E96C7D1F3AA7CE001CF1BD /* KYPageCell.m */; };
-		60E96C801F3AA7E1001CF1BD /* KYPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */; };
 		60FF761B1F4181370070C2F9 /* KYNetManager+EHentai.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */; };
-		60FF76201F41C6B60070C2F9 /* KYReadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */; };
+		60FF77A81F42D56F0070C2F9 /* KYPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF77A31F42D56F0070C2F9 /* KYPageCell.m */; };
+		60FF77A91F42D56F0070C2F9 /* KYPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FF77A41F42D56F0070C2F9 /* KYPageCell.xib */; };
+		60FF77AA1F42D56F0070C2F9 /* KYReadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF77A61F42D56F0070C2F9 /* KYReadingViewController.m */; };
+		60FF77AB1F42D56F0070C2F9 /* KYReadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FF77A71F42D56F0070C2F9 /* KYReadingViewController.storyboard */; };
+		60FF77B11F42D5B70070C2F9 /* KYNetManager+Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF77B01F42D5B70070C2F9 /* KYNetManager+Downloader.m */; };
+		60FF77B41F42D9A10070C2F9 /* KYImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF77B31F42D9A10070C2F9 /* KYImageModel.m */; };
 		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
 
@@ -44,14 +46,18 @@
 		60E8CEF51F3446CD003A86BA /* KYHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYHomeViewController.m; sourceTree = "<group>"; };
 		60E8CEF71F3446F0003A86BA /* KYListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYListCell.h; sourceTree = "<group>"; };
 		60E8CEF81F3446F0003A86BA /* KYListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYListCell.m; sourceTree = "<group>"; };
-		60E8CEFA1F344760003A86BA /* KYReadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYReadingViewController.h; sourceTree = "<group>"; };
-		60E8CEFB1F344760003A86BA /* KYReadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYReadingViewController.m; sourceTree = "<group>"; };
-		60E96C7C1F3AA7CE001CF1BD /* KYPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYPageCell.h; sourceTree = "<group>"; };
-		60E96C7D1F3AA7CE001CF1BD /* KYPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYPageCell.m; sourceTree = "<group>"; };
-		60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYPageCell.xib; sourceTree = "<group>"; };
 		60FF76191F4181370070C2F9 /* KYNetManager+EHentai.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KYNetManager+EHentai.h"; sourceTree = "<group>"; };
 		60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KYNetManager+EHentai.m"; sourceTree = "<group>"; };
-		60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KYReadingViewController.storyboard; sourceTree = "<group>"; };
+		60FF77A21F42D56F0070C2F9 /* KYPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYPageCell.h; sourceTree = "<group>"; };
+		60FF77A31F42D56F0070C2F9 /* KYPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYPageCell.m; sourceTree = "<group>"; };
+		60FF77A41F42D56F0070C2F9 /* KYPageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KYPageCell.xib; sourceTree = "<group>"; };
+		60FF77A51F42D56F0070C2F9 /* KYReadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYReadingViewController.h; sourceTree = "<group>"; };
+		60FF77A61F42D56F0070C2F9 /* KYReadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYReadingViewController.m; sourceTree = "<group>"; };
+		60FF77A71F42D56F0070C2F9 /* KYReadingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KYReadingViewController.storyboard; sourceTree = "<group>"; };
+		60FF77AF1F42D5B70070C2F9 /* KYNetManager+Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KYNetManager+Downloader.h"; sourceTree = "<group>"; };
+		60FF77B01F42D5B70070C2F9 /* KYNetManager+Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KYNetManager+Downloader.m"; sourceTree = "<group>"; };
+		60FF77B21F42D9A10070C2F9 /* KYImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYImageModel.h; sourceTree = "<group>"; };
+		60FF77B31F42D9A10070C2F9 /* KYImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYImageModel.m; sourceTree = "<group>"; };
 		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -88,15 +94,10 @@
 		60E8CECB1F33141B003A86BA /* Kycomics */ = {
 			isa = PBXGroup;
 			children = (
+				60FF77A11F42D56F0070C2F9 /* ReadingVC */,
 				60E8CEF31F344666003A86BA /* 主页 */,
 				60E8CEEE1F341644003A86BA /* Models */,
 				60E8CEE41F334575003A86BA /* NetTools */,
-				60E96C7C1F3AA7CE001CF1BD /* KYPageCell.h */,
-				60E96C7D1F3AA7CE001CF1BD /* KYPageCell.m */,
-				60E96C7F1F3AA7E1001CF1BD /* KYPageCell.xib */,
-				60E8CEFA1F344760003A86BA /* KYReadingViewController.h */,
-				60E8CEFB1F344760003A86BA /* KYReadingViewController.m */,
-				60FF761F1F41C6B60070C2F9 /* KYReadingViewController.storyboard */,
 				60E8CECF1F33141B003A86BA /* AppDelegate.h */,
 				60E8CED01F33141B003A86BA /* AppDelegate.m */,
 				60E8CED51F33141B003A86BA /* Main.storyboard */,
@@ -124,6 +125,8 @@
 				60E8CEE91F33461B003A86BA /* KYNetManager.m */,
 				60FF76191F4181370070C2F9 /* KYNetManager+EHentai.h */,
 				60FF761A1F4181370070C2F9 /* KYNetManager+EHentai.m */,
+				60FF77AF1F42D5B70070C2F9 /* KYNetManager+Downloader.h */,
+				60FF77B01F42D5B70070C2F9 /* KYNetManager+Downloader.m */,
 			);
 			path = NetTools;
 			sourceTree = "<group>";
@@ -133,6 +136,8 @@
 			children = (
 				60E8CEEF1F341688003A86BA /* KYComicsModel.h */,
 				60E8CEF01F341688003A86BA /* KYComicsModel.m */,
+				60FF77B21F42D9A10070C2F9 /* KYImageModel.h */,
+				60FF77B31F42D9A10070C2F9 /* KYImageModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,6 +151,19 @@
 				60E8CEF51F3446CD003A86BA /* KYHomeViewController.m */,
 			);
 			path = "主页";
+			sourceTree = "<group>";
+		};
+		60FF77A11F42D56F0070C2F9 /* ReadingVC */ = {
+			isa = PBXGroup;
+			children = (
+				60FF77A21F42D56F0070C2F9 /* KYPageCell.h */,
+				60FF77A31F42D56F0070C2F9 /* KYPageCell.m */,
+				60FF77A41F42D56F0070C2F9 /* KYPageCell.xib */,
+				60FF77A51F42D56F0070C2F9 /* KYReadingViewController.h */,
+				60FF77A61F42D56F0070C2F9 /* KYReadingViewController.m */,
+				60FF77A71F42D56F0070C2F9 /* KYReadingViewController.storyboard */,
+			);
+			path = ReadingVC;
 			sourceTree = "<group>";
 		};
 		68B6444B08EB8B9D91E3D0A7 /* Pods */ = {
@@ -227,11 +245,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60E96C801F3AA7E1001CF1BD /* KYPageCell.xib in Resources */,
+				60FF77A91F42D56F0070C2F9 /* KYPageCell.xib in Resources */,
 				60E8CEDC1F33141B003A86BA /* LaunchScreen.storyboard in Resources */,
 				60E8CED91F33141B003A86BA /* Assets.xcassets in Resources */,
 				60E8CED71F33141B003A86BA /* Main.storyboard in Resources */,
-				60FF76201F41C6B60070C2F9 /* KYReadingViewController.storyboard in Resources */,
+				60FF77AB1F42D56F0070C2F9 /* KYReadingViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,11 +308,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60E96C7E1F3AA7CE001CF1BD /* KYPageCell.m in Sources */,
+				60FF77A81F42D56F0070C2F9 /* KYPageCell.m in Sources */,
 				60E8CED11F33141B003A86BA /* AppDelegate.m in Sources */,
-				60E8CEFC1F344760003A86BA /* KYReadingViewController.m in Sources */,
+				60FF77B11F42D5B70070C2F9 /* KYNetManager+Downloader.m in Sources */,
+				60FF77B41F42D9A10070C2F9 /* KYImageModel.m in Sources */,
 				60E8CEF91F3446F0003A86BA /* KYListCell.m in Sources */,
 				60E8CEEA1F33461B003A86BA /* KYNetManager.m in Sources */,
+				60FF77AA1F42D56F0070C2F9 /* KYReadingViewController.m in Sources */,
 				60FF761B1F4181370070C2F9 /* KYNetManager+EHentai.m in Sources */,
 				60E8CEF61F3446CD003A86BA /* KYHomeViewController.m in Sources */,
 				60E8CECE1F33141B003A86BA /* main.m in Sources */,

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KYPageCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@class KYImageModel;
 
-- (void)setupWithImageURL:(NSURL *)imgURL;
+@interface KYPageCell : UITableViewCell
+@property (strong, nonatomic) KYImageModel *imageModel;
 
 @end
