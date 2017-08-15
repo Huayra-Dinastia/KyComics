@@ -21,14 +21,6 @@
 @synthesize executing = _executing;
 @synthesize finished  = _finished;
 
-//+ (NSMutableDictionary *)showKeys {
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        objc_setAssociatedObject(self, _cmd, [NSMutableDictionary dictionary], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//    });
-//    return objc_getAssociatedObject(self, _cmd);
-//}
-
 - (instancetype)initWithPageURL:(NSString *)pageURL withCompletion:(KYGETIMAGEURL_BLOCK)completion {
     
     if (self = [super init]) {

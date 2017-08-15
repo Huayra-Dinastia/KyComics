@@ -11,8 +11,9 @@
 @class KYComicsModel;
 
 @interface KYNetManager (EHentai)
+@property (nonatomic, strong, readonly) NSMutableDictionary *showkeys;
 
 - (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection;
-- (void)getShowkey:(NSString *)imgPageURL complection:(KYSUCESS_BLOCK)completion;
+- (void)getShowkey:(NSString *)pageURL complection:(KYSUCESS_BLOCK)completion;
 - (void)getPageImage:(NSString *)urlString showkey:(NSString *)showkey completion:(KYSUCESS_BLOCK)complection;
 @end

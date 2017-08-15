@@ -45,8 +45,19 @@
     }];
 }
 
-- (void)getShowkey:(NSString *)imgPageURL complection:(KYSUCESS_BLOCK)completion {
-    [self kyGET:imgPageURL parameters:nil withCompletion:^(id responseObject) {
+- (void)getShowkey:(NSString *)pageURL complection:(KYSUCESS_BLOCK)completion {
+
+    NSString *gid = [[pageURL componentsSeparatedByString:@"/"].lastObject
+                     componentsSeparatedByString:@"-"].firstObject;
+    
+    if (self.showkeys[gid]) {
+        if (completion) {
+            completion(self.showkeys[gid]);
+        }
+        return ;
+    }
+    
+    [self kyGET:pageURL parameters:nil withCompletion:^(id responseObject) {
         // 解析网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray<TFHppleElement *> *nodes = [doc searchWithXPathQuery:@"//script[@type='text/javascript']"];
@@ -63,11 +74,10 @@
                 // 获取到showkey
                 JSValue *showkey = [jsContext evaluateScript:@"showkey"];
                 if (![showkey.toString isEqualToString:@"undefined"]) {
-#warning showkey不变，只需获取一次
-//                    NSLog(@"%@ ====> %@", imgPageURL, showkey.toString);
+                    self.showkeys[gid] = showkey.toString;
 
                     if (completion) {
-                        completion(showkey.toString);
+                        completion(self.showkeys[gid]);
                     }
                     return ;
                 }
@@ -116,6 +126,15 @@
         objc_setAssociatedObject(self, @"operationQueue", operationQueue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
     return objc_getAssociatedObject(self, @"operationQueue");
+}
+
+- (NSMutableDictionary *)showkeys {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableDictionary *showkeys = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self, _cmd, showkeys, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    });
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 @end
