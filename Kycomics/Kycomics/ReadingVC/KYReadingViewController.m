@@ -21,8 +21,6 @@ static NSString *KYPageCellId = @"KYPageCellId";
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) KYComicsModel *comic;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *pages;
-@property (nonatomic, strong) NSOperationQueue *operationQueue;
 @property (nonatomic, copy) NSString *showkey;
 
 @end
@@ -58,7 +56,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
                     }];
                 }];
             }
-            break;
+//            break;
         }
     }];
 }
@@ -88,22 +86,6 @@ static NSString *KYPageCellId = @"KYPageCellId";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     KYImageModel *imageModel = [KYNetManager manager].downloadingQueue[indexPath.row];
     return imageModel.imgSize.height;
-}
-
-#pragma mark - getter & setter
-- (NSMutableArray *)pages {
-    if (nil == _pages) {
-        _pages = [NSMutableArray array];
-    }
-    return _pages;
-}
-
-- (NSOperationQueue *)operationQueue {
-    if (nil == _operationQueue) {
-        _operationQueue = [[NSOperationQueue alloc] init];
-        _operationQueue.maxConcurrentOperationCount = 1;
-    }
-    return _operationQueue;
 }
 
 #pragma mark - dealloc

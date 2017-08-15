@@ -22,11 +22,7 @@
     if ([keyPath isEqualToString:@"progress"]) {
         [self showProgress:self.imageModel.progress];
     } else if ([keyPath isEqualToString:@"image"]) {
-        [self.progressView removeFromSuperview];
         self.imgView.image = self.imageModel.image;
-        
-//        [_imageModel removeObserver:self forKeyPath:@"image"];
-//        [_imageModel removeObserver:self forKeyPath:@"progress"];
     }
 }
 
@@ -44,6 +40,10 @@
             make.width.offset(progressViewW);
         }];
         self.progressView.backgroundColor = [UIColor orangeColor];
+        
+        if (progress >= 1) {
+            [self.progressView removeFromSuperview];
+        }
     });
 }
 
@@ -69,6 +69,8 @@
     [_imageModel removeObserver:self forKeyPath:@"progress"];
     
     _imageModel = imageModel;
+    [self showProgress:_imageModel.progress];
+    self.imgView.image = _imageModel.image;
     
     // 添加观察者
     [_imageModel addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionOld context:nil];
