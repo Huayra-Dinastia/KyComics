@@ -59,13 +59,18 @@ static NSString *KYPageCellId = @"KYPageCellId";
 
 - (CGSize)getCellHeight:(NSString *)imgURL {
     NSArray *strs = [imgURL componentsSeparatedByString:@"/"];
-    strs = [strs[strs.count - 3] componentsSeparatedByString:@"-"];
+    for (NSInteger i = strs.count - 1; i >= 0; i--) {
+        NSString *str = strs[i];
+        if([str hasSuffix:@"-jpg"]){
+            strs = [str componentsSeparatedByString:@"-"];
+            break;
+        }
+    }
     
     CGFloat width = [strs[strs.count - 3] floatValue];
     CGFloat height = [strs[strs.count - 2] floatValue];
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     
     CGFloat scale = screenWidth / width;
     return CGSizeMake(width * scale, height * scale);
