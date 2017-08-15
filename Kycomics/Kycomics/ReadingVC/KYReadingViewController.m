@@ -22,7 +22,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) KYComicsModel *comic;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, copy) NSString *showkey;
+@property (nonatomic, strong) NSOperationQueue *imgURLOperationQueue;
 
 @end
 
@@ -39,13 +39,22 @@ static NSString *KYPageCellId = @"KYPageCellId";
     
     [self setupUI];
     
+    __weak typeof(self) weakSelf = self;
     [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *pageURLs) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
         for (NSString *pageURL in pageURLs) {
-            [[[KYGETImageURLOperation alloc] initWithPageURL:pageURL withCompletion:^(NSString *imgURL) {
-                KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:pageURL imgURL:imgURL];
-                [[KYNetManager manager] loadImage:imageModel];
-                [self.tableView reloadData];
-            }] start];
+            __weak typeof(strongSelf) weakSelf = strongSelf;
+            KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
+                                                 initWithPageURL:pageURL
+                                                 withCompletion:^(NSString *imgURL) {
+                                                     __weak typeof(weakSelf) strongSelf = weakSelf;
+                                                     KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:pageURL imgURL:imgURL];
+                                                     [[KYNetManager manager] loadImage:imageModel];
+                                                     [strongSelf.tableView reloadData];
+                                                 }];
+            
+            [strongSelf.imgURLOperationQueue addOperation:operation];
 //            if (self.showkey.length) {
 //                // 获取图片地址
 //                [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
@@ -100,6 +109,15 @@ static NSString *KYPageCellId = @"KYPageCellId";
 - (void)dealloc {
     NSLog(@"dealloc");
     [[KYNetManager manager] cancelAllDownloads];
+    [self.imgURLOperationQueue cancelAllOperations];
+}
+
+- (NSOperationQueue *)imgURLOperationQueue {
+    if (nil == _imgURLOperationQueue) {
+        _imgURLOperationQueue = [[NSOperationQueue alloc] init];
+        _imgURLOperationQueue.maxConcurrentOperationCount = 1;
+    }
+    return _imgURLOperationQueue;
 }
 
 @end
