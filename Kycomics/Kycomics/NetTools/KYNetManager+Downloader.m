@@ -20,8 +20,9 @@
 - (void)loadImage:(KYImageModel *)imageModel {
     
     __weak typeof(self) weakSelf = self;
-    [[SDWebImageManager sharedManager] cachedImageExistsForURL:imageModel.imgURL completion:^(BOOL isInCache) {
-        __weak typeof(weakSelf) strongSelf = weakSelf;
+    [[SDWebImageManager sharedManager] cachedImageExistsForURL:imageModel.pageURL
+                                                    completion:^(BOOL isInCache) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         if (isInCache) {
             return ;
         }
@@ -32,13 +33,16 @@
 
 - (void)downloadImage:(KYImageModel *)imageModel {
     SDWebImageDownloadToken *downloadToken = [[SDWebImageDownloader sharedDownloader]
-                                              downloadImageWithURL:imageModel.imgURL options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                                              downloadImageWithURL:imageModel.imgURL
+                                              options:SDWebImageDownloaderUseNSURLCache
+                                              progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                                                   // 下载进度
                                                   if (expectedSize <= 0 || receivedSize <= 0) {
                                                       return ;
                                                   }
                                                   
                                                   imageModel.progress = (double)receivedSize / (double)expectedSize;
+                                                  NSLog(@"%.2f", imageModel.progress);
                                               } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
                                                   if (!finished) {
                                                       return ;
@@ -46,7 +50,8 @@
                                                   
                                                   // 下载完成
                                                   // 将下载好的图片存储到缓存中
-                                                  [[SDWebImageManager sharedManager] saveImageToCache:image forURL:imageModel.imgURL];
+                                                  [[SDWebImageManager sharedManager] saveImageToCache:image forURL:imageModel.pageURL];
+
                                                   imageModel.isfinished = finished;
                                               }];
     

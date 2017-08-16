@@ -12,6 +12,7 @@
     CGSize _imgSize;
     NSInteger _index;
     NSURL *_imgURL;
+    NSURL *_pageURL;
 }
 
 - (instancetype)initWithPageURLstr:(NSString *)pageURLstr imgURLstr:(NSString *)imgURLstr {
@@ -28,6 +29,13 @@
         _imgURL = [NSURL URLWithString:self.imgURLstr];
     }
     return _imgURL;
+}
+
+- (NSURL *)pageURL {
+    if (nil == _pageURL) {
+        _pageURL = [NSURL URLWithString:self.pageURLstr];
+    }
+    return _pageURL;
 }
 
 - (CGSize)imgSize {
@@ -61,7 +69,7 @@
 }
 
 - (UIImage *)image {
-    NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:self.imgURL];
+    NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:self.pageURL];
     return [[[SDWebImageManager sharedManager] imageCache] imageFromCacheForKey:cacheKey];
 }
 

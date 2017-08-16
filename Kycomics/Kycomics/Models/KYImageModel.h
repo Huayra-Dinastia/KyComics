@@ -12,6 +12,7 @@
 @property (nonatomic, copy) NSString *imgURLstr;
 @property (nonatomic, strong, readonly) NSURL *imgURL;
 @property (nonatomic, copy) NSString *pageURLstr;
+@property (nonatomic, strong, readonly) NSURL *pageURL;
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) BOOL isfinished;
 @property (nonatomic, strong, readonly) UIImage *image;

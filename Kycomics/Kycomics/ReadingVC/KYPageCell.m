@@ -21,7 +21,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:@"progress"]) {
         [self showProgress:self.imageModel.progress];
-    } else if ([keyPath isEqualToString:@"image"]) {
+    } else if ([keyPath isEqualToString:@"isfinished"]) {
         if (!self.imageModel.isfinished) {
             return;
         }
@@ -69,7 +69,7 @@
 }
 
 - (void)setImageModel:(KYImageModel *)imageModel {
-    [_imageModel removeObserver:self forKeyPath:@"image"];
+    [_imageModel removeObserver:self forKeyPath:@"isfinished"];
     [_imageModel removeObserver:self forKeyPath:@"progress"];
     
     _imageModel = imageModel;
@@ -77,12 +77,12 @@
     self.imgView.image = _imageModel.image;
     
     // 添加观察者
-    [_imageModel addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionOld context:nil];
+    [_imageModel addObserver:self forKeyPath:@"isfinished" options:NSKeyValueObservingOptionOld context:nil];
     [_imageModel addObserver:self forKeyPath:@"progress" options:NSKeyValueObservingOptionOld context:nil];
 }
 
 - (void)dealloc {
-    [self.imageModel removeObserver:self forKeyPath:@"image"];
+    [self.imageModel removeObserver:self forKeyPath:@"isfinished"];
     [self.imageModel removeObserver:self forKeyPath:@"progress"];
 }
 

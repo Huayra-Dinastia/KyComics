@@ -26,7 +26,8 @@ NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEh
 
 - (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection {
     __weak typeof(self) weakSelf = self;
-    [[KYNetManager manager] getPageURLs:comic complection:^(NSArray *pageURLs) {
+    [[KYNetManager manager] getPageURLs:comic
+                            complection:^(NSArray *pageURLs) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
         for (NSString *pageURLstr in pageURLs) {
