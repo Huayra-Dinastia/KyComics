@@ -12,6 +12,7 @@
 #import "KYComicsModel.h"
 #import "KYReadingViewController.h"
 #import "KYNetManager+EHentai.h"
+#import <MJRefresh.h>
 
 #define ITEM_MARGIN 3.0
 
@@ -28,7 +29,13 @@
     [super viewDidLoad];
     
     [self setupUI];
-    self.page = 0;
+    
+    __weak typeof(self) weakSelf = self;
+    self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.page++;
+    }];
+    [self.collectionView.mj_footer beginRefreshing];
 }
 
 - (void)getComics:(NSInteger)page {
@@ -37,6 +44,8 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf.comics addObjectsFromArray:comics];
         [strongSelf.collectionView reloadData];
+        
+        [strongSelf.collectionView.mj_footer endRefreshing];
     }];
 }
 
@@ -77,10 +86,6 @@
     return ITEM_MARGIN;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
-}
-
 #pragma mark - getter & setter
 - (NSMutableArray *)comics {
     if (nil == _comics) {
@@ -91,7 +96,6 @@
 
 - (void)setPage:(NSInteger)page {
     _page = page;
-    
     [self getComics:_page];
 }
 

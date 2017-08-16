@@ -13,5 +13,6 @@ target 'Kycomics' do
     pod 'XXNibBridge', '~> 2.2'
     pod 'Masonry'
     pod 'UITableView+FDTemplateLayoutCell', '1.3'
+    pod 'MJRefresh'
 
 end
