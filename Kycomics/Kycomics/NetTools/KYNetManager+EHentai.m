@@ -8,16 +8,42 @@
 
 #import "KYNetManager+EHentai.h"
 
-#import "KYComicsModel.h"
 #import <objc/runtime.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "KYComicsModel.h"
+#import "KYImageModel.h"
+#import "KYGETImageURLOperation.h"
+#import "KYNetManager+Downloader.h"
 
 @interface KYNetManager ()
-@property (nonatomic, strong, readonly) NSOperationQueue *operationQueue;
+@property (nonatomic, strong, readonly) NSOperationQueue *imgURLOperationQueue;
 
 @end
 
 @implementation KYNetManager (EHentai)
+
+- (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection {
+    __weak typeof(self) weakSelf = self;
+    [[KYNetManager manager] getPageURLs:comic complection:^(NSArray *pageURLs) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        
+        for (NSString *pageURLstr in pageURLs) {
+            KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
+                                                 initWithPageURL:pageURLstr
+                                                 withCompletion:^(NSString *imgURLstr) {
+                                                     KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr: pageURLstr imgURLstr:imgURLstr];
+                                                     
+                                                     [[KYNetManager manager] loadImage:imageModel];
+                                                     
+                                                     if (complection) {
+                                                         complection(imageModel);
+                                                     }
+                                                 }];
+            
+            [strongSelf.imgURLOperationQueue addOperation:operation];
+        }
+    }];
+}
 
 - (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection {
     NSString *gid = comic.gid;
@@ -118,14 +144,14 @@
 }
 
 
-- (NSOperationQueue *)operationQueue {
+- (NSOperationQueue *)imgURLOperationQueue {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSOperationQueue *operationQueue = [[NSOperationQueue alloc] init];
-        operationQueue.maxConcurrentOperationCount = 1;
-        objc_setAssociatedObject(self, @"operationQueue", operationQueue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        NSOperationQueue *imgURLOperationQueue = [[NSOperationQueue alloc] init];
+        imgURLOperationQueue.maxConcurrentOperationCount = 1;
+        objc_setAssociatedObject(self, _cmd, imgURLOperationQueue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
-    return objc_getAssociatedObject(self, @"operationQueue");
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (NSMutableDictionary *)showkeys {

@@ -8,11 +8,12 @@
 
 #import "KYNetManager.h"
 
-@class KYComicsModel;
+@class KYComicsModel, KYImageModel;
 
 @interface KYNetManager (EHentai)
 @property (nonatomic, strong, readonly) NSMutableDictionary *showkeys;
 
+- (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection;
 - (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection;
 - (void)getShowkey:(NSString *)pageURL complection:(KYSUCESS_BLOCK)completion;
 - (void)getPageImage:(NSString *)urlString showkey:(NSString *)showkey completion:(KYSUCESS_BLOCK)complection;

@@ -14,7 +14,6 @@
 #import "KYNetManager+Downloader.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "KYImageModel.h"
-#import "KYGETImageURLOperation.h"
 
 
 static NSString *KYPageCellId = @"KYPageCellId";
@@ -22,7 +21,6 @@ static NSString *KYPageCellId = @"KYPageCellId";
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) KYComicsModel *comic;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSOperationQueue *imgURLOperationQueue;
 @property (nonatomic, strong) NSMutableArray *imgModels;
 
 @end
@@ -39,27 +37,16 @@ static NSString *KYPageCellId = @"KYPageCellId";
     [super viewDidLoad];
     
     [self setupUI];
-    
+    [self loadImages];
+}
+
+- (void)loadImages {
     __weak typeof(self) weakSelf = self;
-    [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *pageURLs) {
+    [[KYNetManager manager] getImageURL:self.comic complection:^(KYImageModel *imageModel) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
-        for (NSString *pageURLstr in pageURLs) {
-            __weak typeof(strongSelf) weakSelf = strongSelf;
-            KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
-                                                 initWithPageURL:pageURLstr
-                                                 withCompletion:^(NSString *imgURLstr) {
-                                                     __weak typeof(weakSelf) strongSelf = weakSelf;
-                                                     KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr: pageURLstr imgURLstr:imgURLstr];
-                                                     
-                                                     [[KYNetManager manager] loadImage:imageModel];
-                                                     
-                                                     [strongSelf.imgModels addObject:imageModel];
-                                                     [strongSelf.tableView reloadData];
-                                                 }];
-            
-            [strongSelf.imgURLOperationQueue addOperation:operation];
-        }
+        [strongSelf.imgModels addObject:imageModel];
+        [strongSelf.tableView reloadData];
     }];
 }
 
@@ -94,17 +81,8 @@ static NSString *KYPageCellId = @"KYPageCellId";
 - (void)dealloc {
     NSLog(@"dealloc");
     [[KYNetManager manager] cancelAllDownloads];
-    [self.imgURLOperationQueue cancelAllOperations];
+//    [self.imgURLOperationQueue cancelAllOperations];
 }
-
-- (NSOperationQueue *)imgURLOperationQueue {
-    if (nil == _imgURLOperationQueue) {
-        _imgURLOperationQueue = [[NSOperationQueue alloc] init];
-        _imgURLOperationQueue.maxConcurrentOperationCount = 1;
-    }
-    return _imgURLOperationQueue;
-}
-
 - (NSMutableArray *)imgModels {
     if (nil == _imgModels) {
         _imgModels = [NSMutableArray arrayWithCapacity:[self.comic.filecount integerValue]];

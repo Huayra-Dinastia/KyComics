@@ -44,10 +44,9 @@
                                                       return ;
                                                   }
                                                   
+                                                  // 下载完成
                                                   // 将下载好的图片存储到缓存中
                                                   [[SDWebImageManager sharedManager] saveImageToCache:image forURL:imageModel.imgURL];
-                                                  // 下载完成
-                                                  //                                                  imageModel.image = image;
                                                   imageModel.isfinished = finished;
                                               }];
     
