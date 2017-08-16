@@ -57,30 +57,34 @@
             return;
         }
         
-        NSLog(@"%@", [NSThread currentThread]);
+//        NSLog(@"%@", [NSThread currentThread]);
         
         // 获取showkey
+        __weak typeof(self) weakSelf = self;
         [[KYNetManager manager] getShowkey:self.pageURL complection:^(NSString *showkey) {
-            if (self.isCancelled) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (strongSelf.isCancelled) {
                 return;
             }
             
-            [[KYNetManager manager] getImageURL:self.pageURL showkey:showkey completion:^(NSString *imgURL) {
-                if (self.isCancelled) {
+            __weak typeof(strongSelf) weakSelf = strongSelf;
+            [[KYNetManager manager] getImageURL:strongSelf.pageURL showkey:showkey completion:^(NSString *imgURL) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                if (strongSelf.isCancelled) {
                     return;
                 }
                 
-                if (self.completion) {
-                    self.completion(imgURL);
+                if (strongSelf.completion) {
+                    strongSelf.completion(imgURL);
                 }
                 
-                [self willChangeValueForKey:@"isExecuting"];
+                [strongSelf willChangeValueForKey:@"isExecuting"];
                 _executing = NO;
-                [self didChangeValueForKey:@"isExecuting"];
+                [strongSelf didChangeValueForKey:@"isExecuting"];
                 
-                [self willChangeValueForKey:@"isFinished"];
+                [strongSelf willChangeValueForKey:@"isFinished"];
                 _finished = YES;
-                [self didChangeValueForKey:@"isFinished"];
+                [strongSelf didChangeValueForKey:@"isFinished"];
                 
             }];
         }];

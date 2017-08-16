@@ -39,14 +39,16 @@
 - (void)showProgress:(CGFloat)progress {
     CGFloat progressViewW = [UIScreen mainScreen].bounds.size.width * progress;
     
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.progressView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.offset(progressViewW);
         }];
-        self.progressView.backgroundColor = [UIColor orangeColor];
+        strongSelf.progressView.backgroundColor = [UIColor orangeColor];
         
         if (progress >= 1) {
-            [self.progressView removeFromSuperview];
+            [strongSelf.progressView removeFromSuperview];
         }
     });
 }

@@ -15,6 +15,7 @@ FOUNDATION_EXPORT NSString * const KYNetManagerEhentaiCancelLoadingNotification;
 @interface KYNetManager (EHentai)
 @property (nonatomic, strong, readonly) NSMutableDictionary *showkeys;
 
+- (void)getComics:(NSInteger)page completion:(void (^)(NSArray *comics))completion;
 - (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection;
 - (void)getShowkey:(NSString *)pageURL complection:(KYSUCESS_BLOCK)completion;
 - (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection;

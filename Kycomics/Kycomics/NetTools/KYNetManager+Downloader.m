@@ -42,7 +42,7 @@
                                                   }
                                                   
                                                   imageModel.progress = (double)receivedSize / (double)expectedSize;
-                                                  NSLog(@"%.2f", imageModel.progress);
+//                                                  NSLog(@"%.2f", imageModel.progress);
                                               } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
                                                   if (!finished) {
                                                       return ;
