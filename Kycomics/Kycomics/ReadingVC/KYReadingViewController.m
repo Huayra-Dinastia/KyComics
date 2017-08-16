@@ -80,8 +80,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
 #pragma mark - dealloc
 - (void)dealloc {
     NSLog(@"dealloc");
-    [[KYNetManager manager] cancelAllDownloads];
-//    [self.imgURLOperationQueue cancelAllOperations];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KYNetManagerEhentaiCancelLoadingNotification object:nil];
 }
 - (NSMutableArray *)imgModels {
     if (nil == _imgModels) {

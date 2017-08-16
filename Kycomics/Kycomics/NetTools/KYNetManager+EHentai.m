@@ -15,6 +15,8 @@
 #import "KYGETImageURLOperation.h"
 #import "KYNetManager+Downloader.h"
 
+NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhentaiCancelLoadingNotification";
+
 @interface KYNetManager ()
 @property (nonatomic, strong, readonly) NSOperationQueue *imgURLOperationQueue;
 
@@ -143,13 +145,23 @@
     }];
 }
 
+- (void)cancelAllDownloadsAndOperations {
+    [[KYNetManager manager] cancelAllDownloads];
+    [self.imgURLOperationQueue cancelAllOperations];
+}
 
+#pragma mark - getter & setter
 - (NSOperationQueue *)imgURLOperationQueue {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSOperationQueue *imgURLOperationQueue = [[NSOperationQueue alloc] init];
         imgURLOperationQueue.maxConcurrentOperationCount = 1;
         objc_setAssociatedObject(self, _cmd, imgURLOperationQueue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(cancelAllDownloadsAndOperations)
+                                                     name:KYNetManagerEhentaiCancelLoadingNotification
+                                                   object:nil];
     });
     return objc_getAssociatedObject(self, _cmd);
 }
@@ -161,6 +173,10 @@
         objc_setAssociatedObject(self, _cmd, showkeys, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     });
     return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

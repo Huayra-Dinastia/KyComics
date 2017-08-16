@@ -10,6 +10,8 @@
 
 @class KYComicsModel, KYImageModel;
 
+FOUNDATION_EXPORT NSString * const KYNetManagerEhentaiCancelLoadingNotification;
+
 @interface KYNetManager (EHentai)
 @property (nonatomic, strong, readonly) NSMutableDictionary *showkeys;
 
