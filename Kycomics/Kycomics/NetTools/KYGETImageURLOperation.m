@@ -57,13 +57,16 @@
             return;
         }
         
-//        NSLog(@"%@", [NSThread currentThread]);
+        NSLog(@"%@", [NSThread currentThread]);
         
         // 获取showkey
         __weak typeof(self) weakSelf = self;
         [[KYNetManager manager] getShowkey:self.pageURL complection:^(NSString *showkey) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if (strongSelf.isCancelled) {
+                [strongSelf willChangeValueForKey:@"isFinished"];
+                _finished = YES;
+                [strongSelf didChangeValueForKey:@"isFinished"];
                 return;
             }
             
@@ -71,6 +74,9 @@
             [[KYNetManager manager] getImageURL:strongSelf.pageURL showkey:showkey completion:^(NSString *imgURL) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 if (strongSelf.isCancelled) {
+                    [strongSelf willChangeValueForKey:@"isFinished"];
+                    _finished = YES;
+                    [strongSelf didChangeValueForKey:@"isFinished"];
                     return;
                 }
                 

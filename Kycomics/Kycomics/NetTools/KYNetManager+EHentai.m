@@ -15,7 +15,7 @@
 #import "KYGETImageURLOperation.h"
 #import "KYNetManager+Downloader.h"
 
-NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhentaiCancelLoadingNotification";
+NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhentaiCancelLoadingNotification";
 
 @interface KYNetManager ()
 @property (nonatomic, strong, readonly) NSOperationQueue *imgURLOperationQueue;

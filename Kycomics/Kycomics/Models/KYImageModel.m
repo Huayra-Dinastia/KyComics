@@ -8,6 +8,9 @@
 
 #import "KYImageModel.h"
 
+const NSString *KEYPATH_isfinished = @"isfinished";
+const NSString *KEYPATH_progress = @"progress";
+
 @implementation KYImageModel {
     CGSize _imgSize;
     NSInteger _index;
