@@ -28,17 +28,17 @@
             NSString *str = strs[i];
             if([str hasSuffix:@"-jpg"]){
                 strs = [str componentsSeparatedByString:@"-"];
+                
+                CGFloat width = [strs[strs.count - 3] floatValue];
+                CGFloat height = [strs[strs.count - 2] floatValue];
+                
+                CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+                
+                CGFloat scale = screenWidth / width;
+                _imgSize = CGSizeMake(width * scale, height * scale);
                 break;
             }
         }
-        
-        CGFloat width = [strs[strs.count - 3] floatValue];
-        CGFloat height = [strs[strs.count - 2] floatValue];
-        
-        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-        
-        CGFloat scale = screenWidth / width;
-        _imgSize = CGSizeMake(width * scale, height * scale);
     }
     return _imgSize;
 }
