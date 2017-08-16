@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface KYImageModel : NSObject
-@property (nonatomic, copy) NSString *imgURL;
-@property (nonatomic, copy) NSString *pageURL;
+@property (nonatomic, copy) NSString *imgURLstr;
+@property (nonatomic, strong, readonly) NSURL *imgURL;
+@property (nonatomic, copy) NSString *pageURLstr;
 @property (nonatomic, assign) double progress;
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, assign) BOOL isfinished;
+@property (nonatomic, strong, readonly) UIImage *image;
 
 @property (nonatomic, assign, readonly) CGSize imgSize;
 @property (nonatomic, assign, readonly) NSInteger index;
 
-- (instancetype)initWithPageURL:(NSString *)pageURL imgURL:(NSString *)imgURL;
+- (instancetype)initWithPageURLstr:(NSString *)pageURLstr imgURLstr:(NSString *)imgURLstr;
 
 @end

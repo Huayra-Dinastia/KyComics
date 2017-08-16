@@ -19,8 +19,20 @@
 
 - (void)loadImage:(KYImageModel *)imageModel {
     
+    __weak typeof(self) weakSelf = self;
+    [[SDWebImageManager sharedManager] cachedImageExistsForURL:imageModel.imgURL completion:^(BOOL isInCache) {
+        __weak typeof(weakSelf) strongSelf = weakSelf;
+        if (isInCache) {
+            return ;
+        }
+        
+        [strongSelf downloadImage:imageModel];
+    }];
+}
+
+- (void)downloadImage:(KYImageModel *)imageModel {
     SDWebImageDownloadToken *downloadToken = [[SDWebImageDownloader sharedDownloader]
-                                              downloadImageWithURL:[NSURL URLWithString:imageModel.imgURL] options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                                              downloadImageWithURL:imageModel.imgURL options:SDWebImageDownloaderUseNSURLCache progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                                                   // 下载进度
                                                   if (expectedSize <= 0 || receivedSize <= 0) {
                                                       return ;
@@ -32,8 +44,11 @@
                                                       return ;
                                                   }
                                                   
+                                                  // 将下载好的图片存储到缓存中
+                                                  [[SDWebImageManager sharedManager] saveImageToCache:image forURL:imageModel.imgURL];
                                                   // 下载完成
-                                                  imageModel.image = image;
+                                                  //                                                  imageModel.image = image;
+                                                  imageModel.isfinished = finished;
                                               }];
     
     NSMutableArray *tmpArr = self.downloadingQueue;
@@ -41,7 +56,6 @@
     [tmpArr sortUsingComparator:^NSComparisonResult(KYImageModel * _Nonnull obj1, KYImageModel * _Nonnull obj2) {
         return obj1.index > obj2.index;
     }];
-    
 }
 
 - (void)cancelAllDownloads {

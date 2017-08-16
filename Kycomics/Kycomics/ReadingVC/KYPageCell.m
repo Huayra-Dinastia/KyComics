@@ -22,6 +22,10 @@
     if ([keyPath isEqualToString:@"progress"]) {
         [self showProgress:self.imageModel.progress];
     } else if ([keyPath isEqualToString:@"image"]) {
+        if (!self.imageModel.isfinished) {
+            return;
+        }
+        
         self.imgView.image = self.imageModel.image;
     }
 }

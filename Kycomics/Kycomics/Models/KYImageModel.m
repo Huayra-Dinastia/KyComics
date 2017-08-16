@@ -11,19 +11,28 @@
 @implementation KYImageModel {
     CGSize _imgSize;
     NSInteger _index;
+    NSURL *_imgURL;
 }
 
-- (instancetype)initWithPageURL:(NSString *)pageURL imgURL:(NSString *)imgURL {
+- (instancetype)initWithPageURLstr:(NSString *)pageURLstr imgURLstr:(NSString *)imgURLstr {
     if (self = [super init]) {
-        self.pageURL = pageURL;
-        self.imgURL = imgURL;
+        self.pageURLstr = pageURLstr;
+        self.imgURLstr = imgURLstr;
+        self.isfinished = NO;
     }
     return self;
 }
 
+- (NSURL *)imgURL {
+    if (nil == _imgURL) {
+        _imgURL = [NSURL URLWithString:self.imgURLstr];
+    }
+    return _imgURL;
+}
+
 - (CGSize)imgSize {
     if (CGSizeEqualToSize(CGSizeZero, _imgSize)) {
-        NSArray *strs = [self.imgURL componentsSeparatedByString:@"/"];
+        NSArray *strs = [self.imgURLstr componentsSeparatedByString:@"/"];
         for (NSInteger i = strs.count - 1; i >= 0; i--) {
             NSString *str = strs[i];
             if([str hasSuffix:@"-jpg"]){
@@ -46,9 +55,14 @@
 - (NSInteger)index {
     if (0 == _index) {
 //        https://e-hentai.org/s/9ba7beaebf/1101469-1
-         _index = [[self.pageURL componentsSeparatedByString:@"-"].lastObject integerValue];
+         _index = [[self.pageURLstr componentsSeparatedByString:@"-"].lastObject integerValue];
     }
     return _index;
+}
+
+- (UIImage *)image {
+    NSString *cacheKey = [[SDWebImageManager sharedManager] cacheKeyForURL:self.imgURL];
+    return [[[SDWebImageManager sharedManager] imageCache] imageFromCacheForKey:cacheKey];
 }
 
 @end

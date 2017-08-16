@@ -23,6 +23,7 @@ static NSString *KYPageCellId = @"KYPageCellId";
 @property (nonatomic, strong) KYComicsModel *comic;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSOperationQueue *imgURLOperationQueue;
+@property (nonatomic, strong) NSMutableArray *imgModels;
 
 @end
 
@@ -43,14 +44,17 @@ static NSString *KYPageCellId = @"KYPageCellId";
     [[KYNetManager manager] getPageURLs:self.comic complection:^(NSArray *pageURLs) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         
-        for (NSString *pageURL in pageURLs) {
+        for (NSString *pageURLstr in pageURLs) {
             __weak typeof(strongSelf) weakSelf = strongSelf;
             KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
-                                                 initWithPageURL:pageURL
-                                                 withCompletion:^(NSString *imgURL) {
+                                                 initWithPageURL:pageURLstr
+                                                 withCompletion:^(NSString *imgURLstr) {
                                                      __weak typeof(weakSelf) strongSelf = weakSelf;
-                                                     KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:pageURL imgURL:imgURL];
+                                                     KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr: pageURLstr imgURLstr:imgURLstr];
+                                                     
                                                      [[KYNetManager manager] loadImage:imageModel];
+                                                     
+                                                     [strongSelf.imgModels addObject:imageModel];
                                                      [strongSelf.tableView reloadData];
                                                  }];
             
@@ -69,20 +73,20 @@ static NSString *KYPageCellId = @"KYPageCellId";
 
 #pragma UITableViewDelegate, UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [KYNetManager manager].downloadingQueue.count;
+    return self.imgModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     KYPageCell *cell = [tableView dequeueReusableCellWithIdentifier:KYPageCellId];
     
-    KYImageModel *imageModel = [KYNetManager manager].downloadingQueue[indexPath.row];
+    KYImageModel *imageModel = self.imgModels[indexPath.row];
     cell.imageModel = imageModel;
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    KYImageModel *imageModel = [KYNetManager manager].downloadingQueue[indexPath.row];
+    KYImageModel *imageModel = self.imgModels[indexPath.row];
     return imageModel.imgSize.height;
 }
 
@@ -99,6 +103,13 @@ static NSString *KYPageCellId = @"KYPageCellId";
         _imgURLOperationQueue.maxConcurrentOperationCount = 1;
     }
     return _imgURLOperationQueue;
+}
+
+- (NSMutableArray *)imgModels {
+    if (nil == _imgModels) {
+        _imgModels = [NSMutableArray arrayWithCapacity:[self.comic.filecount integerValue]];
+    }
+    return _imgModels;
 }
 
 @end
