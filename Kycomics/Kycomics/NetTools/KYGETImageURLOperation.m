@@ -65,7 +65,7 @@
                 return;
             }
             
-            [[KYNetManager manager] getPageImage:self.pageURL showkey:showkey completion:^(NSString *imgURL) {
+            [[KYNetManager manager] getImageURL:self.pageURL showkey:showkey completion:^(NSString *imgURL) {
                 if (self.isCancelled) {
                     return;
                 }
@@ -85,24 +85,6 @@
             }];
         }];
     }
-//    if (self.showkey.length) {
-//        // 获取图片地址
-//        [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-//            KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
-//            [[KYNetManager manager] loadImage:imageModel];
-//            [self.tableView reloadData];
-//        }];
-//    } else {
-//        // 获取showkey
-//        [[KYNetManager manager] getShowkey:imgPageURL complection:^(NSString *showkey) {
-//            self.showkey = showkey;
-//            [[KYNetManager manager] getPageImage:imgPageURL showkey:self.showkey completion:^(NSString *imgURL) {
-//                KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURL:imgPageURL imgURL:imgURL];
-//                [[KYNetManager manager] loadImage:imageModel];
-//                [self.tableView reloadData];
-//            }];
-//        }];
-//    }
 }
 
 - (BOOL)isConcurrent {

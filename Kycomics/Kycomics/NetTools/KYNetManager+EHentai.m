@@ -24,30 +24,7 @@ NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEh
 
 @implementation KYNetManager (EHentai)
 
-- (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection {
-    __weak typeof(self) weakSelf = self;
-    [[KYNetManager manager] getPageURLs:comic
-                            complection:^(NSArray *pageURLs) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        
-        for (NSString *pageURLstr in pageURLs) {
-            KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
-                                                 initWithPageURL:pageURLstr
-                                                 withCompletion:^(NSString *imgURLstr) {
-                                                     KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr: pageURLstr imgURLstr:imgURLstr];
-                                                     
-                                                     [[KYNetManager manager] loadImage:imageModel];
-                                                     
-                                                     if (complection) {
-                                                         complection(imageModel);
-                                                     }
-                                                 }];
-            
-            [strongSelf.imgURLOperationQueue addOperation:operation];
-        }
-    }];
-}
-
+/// 获取图片页面URL
 - (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection {
     NSString *gid = comic.gid;
     NSString *token = comic.token;
@@ -74,6 +51,7 @@ NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEh
     }];
 }
 
+/// 获取showkey
 - (void)getShowkey:(NSString *)pageURL complection:(KYSUCESS_BLOCK)completion {
 
     NSString *gid = [[pageURL componentsSeparatedByString:@"/"].lastObject
@@ -115,7 +93,33 @@ NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEh
     }];
 }
 
-- (void)getPageImage:(NSString *)urlString showkey:(NSString *)showkey completion:(KYSUCESS_BLOCK)complection {
+/// 获取一本漫画中所有图片的真实URL，comlection每次回调一张图片URL
+- (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection {
+    __weak typeof(self) weakSelf = self;
+    [[KYNetManager manager] getPageURLs:comic
+                            complection:^(NSArray *pageURLs) {
+                                __strong typeof(weakSelf) strongSelf = weakSelf;
+                                
+                                for (NSString *pageURLstr in pageURLs) {
+                                    KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
+                                                                         initWithPageURL:pageURLstr
+                                                                         withCompletion:^(NSString *imgURLstr) {
+                                                                             KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr: pageURLstr imgURLstr:imgURLstr];
+                                                                             
+                                                                             [[KYNetManager manager] loadImage:imageModel];
+                                                                             
+                                                                             if (complection) {
+                                                                                 complection(imageModel);
+                                                                             }
+                                                                         }];
+                                    
+                                    [strongSelf.imgURLOperationQueue addOperation:operation];
+                                }
+                            }];
+}
+
+/// 获取一张图片的实际的URL
+- (void)getImageURL:(NSString *)urlString showkey:(NSString *)showkey completion:(KYSUCESS_BLOCK)complection {
     //https://e-hentai.org/s/1a8e31f2c6/1029334-2
     //                          -2        -1
     NSArray *strs = [urlString componentsSeparatedByString:@"/"];
@@ -146,6 +150,7 @@ NSString * const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEh
     }];
 }
 
+/// 取消所有下载和获取图片URL操作
 - (void)cancelAllDownloadsAndOperations {
     [[KYNetManager manager] cancelAllDownloads];
     [self.imgURLOperationQueue cancelAllOperations];
