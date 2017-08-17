@@ -12,7 +12,7 @@
 #import "KYPageCell.h"
 #import "KYNetManager+EHentai.h"
 #import "KYNetManager+Downloader.h"
-#import <UITableView+FDTemplateLayoutCell.h>
+#import "UITableView+FDTemplateLayoutCell.h"
 #import "KYImageModel.h"
 
 

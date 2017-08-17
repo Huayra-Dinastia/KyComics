@@ -43,13 +43,18 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
                            };
     
     __weak typeof(self) weakSelf = self;
-    [self kyGET:parm withCompletion:^(id responseObject) {
+    [self kyGET:parm withCompletion:^(id responseObject, NSError *error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
+     
         // 抓取到网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray<TFHppleElement *> *picElements = [doc searchWithXPathQuery:@"//div [@class='it5']//a"];
         
         if (0 == picElements.count) {
+            [JDStatusBarNotification showWithStatus:@"什么都没有哦" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+            if (completion) {
+                completion(nil);
+            }
             return ;
         }
         
@@ -77,9 +82,17 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
                            @"gidlist": ids
                            };
     
-    [self kyPOST:parm withCompletion:^(id responseObject) {
+    [self kyPOST:parm withCompletion:^(id responseObject, NSError *error) {
         id result = [responseObject mj_JSONObject];
         NSMutableArray *comics = [KYComicsModel mj_objectArrayWithKeyValuesArray:result[@"gmetadata"]];
+        
+        if (0 == comics.count) {
+            [JDStatusBarNotification showWithStatus:@"什么都没有哦" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+            if (completion) {
+                completion(nil);
+            }
+            return ;
+        }
         
         if (completion) {
             completion(comics);
@@ -93,12 +106,16 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
     NSString *token = comic.token;
     
     NSString *urlString = [NSString stringWithFormat:@"g/%@/%@", gid, token];
-    [self kyGET:urlString parameters:nil withCompletion:^(id responseObject) {
+    [self kyGET:urlString parameters:nil withCompletion:^(id responseObject, NSError *error) {
         // 解析网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray<TFHppleElement *> *nodes = [doc searchWithXPathQuery:@"//div [@class='gdtm']//a"];
         
         if (0 == nodes.count) {
+            [JDStatusBarNotification showWithStatus:@"什么都没有哦" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+            if (complection) {
+                complection(nil, error);
+            }
             return ;
         }
         
@@ -109,7 +126,7 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
         }
         
         if (complection) {
-            complection(imgPageUrls);
+            complection(imgPageUrls, error);
         }
     }];
 }
@@ -122,12 +139,12 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
     
     if (self.showkeys[gid]) {
         if (completion) {
-            completion(self.showkeys[gid]);
+            completion(self.showkeys[gid], nil);
         }
         return ;
     }
     
-    [self kyGET:pageURL parameters:nil withCompletion:^(id responseObject) {
+    [self kyGET:pageURL parameters:nil withCompletion:^(id responseObject, NSError *error) {
         // 解析网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray<TFHppleElement *> *nodes = [doc searchWithXPathQuery:@"//script[@type='text/javascript']"];
@@ -147,7 +164,7 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
                     self.showkeys[gid] = showkey.toString;
 
                     if (completion) {
-                        completion(self.showkeys[gid]);
+                        completion(self.showkeys[gid], error);
                     }
                     return ;
                 }
@@ -160,7 +177,7 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
 - (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection {
     __weak typeof(self) weakSelf = self;
     [[KYNetManager manager] getPageURLs:comic
-                            complection:^(NSArray *pageURLs) {
+                            complection:^(NSArray *pageURLs, NSError *error) {
                                 __strong typeof(weakSelf) strongSelf = weakSelf;
                                 
                                 for (NSString *pageURLstr in pageURLs) {
@@ -199,16 +216,18 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
                            @"showkey": showkey
                            };
     
-    [[KYNetManager manager] kyPOST:parm withCompletion:^(id responseObject) {
+    [[KYNetManager manager] kyPOST:parm withCompletion:^(id responseObject, NSError *error) {
         id i3 = [responseObject mj_JSONObject][@"i3"];
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:[i3 mj_JSONData]];
         TFHppleElement *node = [doc searchWithXPathQuery:@"//a/img"].lastObject;
         
         NSString *src = node.attributes[@"src"];
-//        NSLog(@"========> %@", src);
         
         if (complection) {
-            complection(src);
+            if (0 == src.length) {
+                [JDStatusBarNotification showWithStatus:@"什么都没有哦" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+            }
+            complection(src, error);
         }
     }];
 }

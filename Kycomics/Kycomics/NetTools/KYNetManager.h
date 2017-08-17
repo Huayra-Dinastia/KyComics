@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^KYSUCESS_BLOCK)(id responseObject);
+typedef void (^KYSUCESS_BLOCK)(id responseObject, NSError *error);
 
 @interface KYNetManager : NSObject
 

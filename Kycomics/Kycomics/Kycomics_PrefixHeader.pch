@@ -15,5 +15,6 @@
 #import <UIImageView+WebCache.h>
 #import <XXNibBridge.h>
 #import <Masonry.h>
+#import <JDStatusBarNotification/JDStatusBarNotification.h>
 
 #endif /* Kycomics_PrefixHeader_pch */

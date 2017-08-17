@@ -10,7 +10,7 @@
 
 #import <AFNetworking.h>
 
-#define domain @"https://e-hentai.org"
+#define ehentai @"https://e-hentai.org"
 
 @interface KYNetManager ()
 @property (nonatomic, copy) void (^completion)(id);
@@ -50,7 +50,7 @@
 }
 
 - (void)kyGET:(NSString *)urlString parameters:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion {
-    urlString = [urlString hasPrefix:domain]? urlString: [domain stringByAppendingPathComponent:urlString];
+    urlString = [urlString hasPrefix:ehentai]? urlString: [ehentai stringByAppendingPathComponent:urlString];
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                                  URLString:urlString
                                                                                 parameters:parameters
@@ -60,12 +60,17 @@
                                                     completionHandler:^(NSURLResponse * _Nonnull response,
                                                                         id  _Nullable responseObject,
                                                                         NSError * _Nullable error) {
-                                                        if (completion) {
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                completion(responseObject);
-                                                            });
+                                                        if (error) {
+                                                            [JDStatusBarNotification showWithStatus:error.domain
+                                                                                       dismissAfter:2.0
+                                                                                          styleName:JDStatusBarStyleError];
                                                         }
                                                         
+                                                        if (completion) {
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                completion(responseObject, error);
+                                                            });
+                                                        }
                                                     }];
     
     [task resume];
@@ -74,7 +79,7 @@
 #pragma mark - HTTPMethod: POST
 - (void)kyPOST:(NSDictionary *)parameters withCompletion:(KYSUCESS_BLOCK)completion {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST"
-                                                                                 URLString:[domain stringByAppendingPathComponent:@"api.php"]
+                                                                                 URLString:[ehentai stringByAppendingPathComponent:@"api.php"]
                                                                                 parameters:nil
                                                                                      error:nil];
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
@@ -86,7 +91,7 @@
                                                         if (completion) {
 //                                                            id result = [responseObject mj_JSONObject];
                                                             dispatch_async(dispatch_get_main_queue(), ^{
-                                                                completion(responseObject);
+                                                                completion(responseObject, error);
                                                             });
                                                         }
                                                     }];

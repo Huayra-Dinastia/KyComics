@@ -24,7 +24,7 @@
 		60FF77AB1F42D56F0070C2F9 /* KYReadingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FF77A71F42D56F0070C2F9 /* KYReadingViewController.storyboard */; };
 		60FF77B11F42D5B70070C2F9 /* KYNetManager+Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF77B01F42D5B70070C2F9 /* KYNetManager+Downloader.m */; };
 		60FF77B41F42D9A10070C2F9 /* KYImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FF77B31F42D9A10070C2F9 /* KYImageModel.m */; };
-		A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */; };
+		730749D5EC8775AFCE574451 /* libPods-Kycomics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCE7448BF4AED4243E97FE58 /* libPods-Kycomics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +61,7 @@
 		60FF77B01F42D5B70070C2F9 /* KYNetManager+Downloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KYNetManager+Downloader.m"; sourceTree = "<group>"; };
 		60FF77B21F42D9A10070C2F9 /* KYImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KYImageModel.h; sourceTree = "<group>"; };
 		60FF77B31F42D9A10070C2F9 /* KYImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KYImageModel.m; sourceTree = "<group>"; };
-		DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCE7448BF4AED4243E97FE58 /* libPods-Kycomics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kycomics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2B7AA26785938AEFF1DAC78 /* libPods-Kycomics.a in Frameworks */,
+				730749D5EC8775AFCE574451 /* libPods-Kycomics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +183,7 @@
 		C5D08FCF8ECCFC078789A645 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DBF6AE05EC7F353B953220B7 /* libPods-Kycomics.a */,
+				FCE7448BF4AED4243E97FE58 /* libPods-Kycomics.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

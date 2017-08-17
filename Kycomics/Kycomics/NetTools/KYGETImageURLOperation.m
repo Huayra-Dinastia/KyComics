@@ -61,17 +61,8 @@
         
         // 获取showkey
         __weak typeof(self) weakSelf = self;
-        [[KYNetManager manager] getShowkey:self.pageURL complection:^(NSString *showkey) {
-            __strong typeof(weakSelf) strongSelf = weakSelf;
-            if (strongSelf.isCancelled) {
-                [strongSelf willChangeValueForKey:@"isFinished"];
-                _finished = YES;
-                [strongSelf didChangeValueForKey:@"isFinished"];
-                return;
-            }
-            
-            __weak typeof(strongSelf) weakSelf = strongSelf;
-            [[KYNetManager manager] getImageURL:strongSelf.pageURL showkey:showkey completion:^(NSString *imgURL) {
+        [[KYNetManager manager] getShowkey:self.pageURL
+                               complection:^(NSString *showkey, NSError *error) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 if (strongSelf.isCancelled) {
                     [strongSelf willChangeValueForKey:@"isFinished"];
@@ -80,19 +71,29 @@
                     return;
                 }
                 
-                if (strongSelf.completion) {
-                    strongSelf.completion(imgURL);
-                }
-                
-                [strongSelf willChangeValueForKey:@"isExecuting"];
-                _executing = NO;
-                [strongSelf didChangeValueForKey:@"isExecuting"];
-                
-                [strongSelf willChangeValueForKey:@"isFinished"];
-                _finished = YES;
-                [strongSelf didChangeValueForKey:@"isFinished"];
-                
-            }];
+                __weak typeof(strongSelf) weakSelf = strongSelf;
+                [[KYNetManager manager] getImageURL:strongSelf.pageURL showkey:showkey completion:^(NSString *imgURL, NSError *error) {
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    if (strongSelf.isCancelled) {
+                        [strongSelf willChangeValueForKey:@"isFinished"];
+                        _finished = YES;
+                        [strongSelf didChangeValueForKey:@"isFinished"];
+                        return;
+                    }
+                    
+                    if (strongSelf.completion) {
+                        strongSelf.completion(imgURL);
+                    }
+                    
+                    [strongSelf willChangeValueForKey:@"isExecuting"];
+                    _executing = NO;
+                    [strongSelf didChangeValueForKey:@"isExecuting"];
+                    
+                    [strongSelf willChangeValueForKey:@"isFinished"];
+                    _finished = YES;
+                    [strongSelf didChangeValueForKey:@"isFinished"];
+                    
+                }];
         }];
     }
 }
