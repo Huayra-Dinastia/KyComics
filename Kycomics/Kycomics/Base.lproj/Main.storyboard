@@ -13,7 +13,7 @@
         <scene sceneID="u0W-RL-Xfn">
             <objects>
                 <navigationController id="usS-9y-0vV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="主页" id="pxZ-DB-5Pl"/>
+                    <tabBarItem key="tabBarItem" title="主页" image="icon-tabbar-home_25x23_" selectedImage="icon-tabbar-home-active_25x23_" id="pxZ-DB-5Pl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oAy-Dc-6Ng">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -35,7 +35,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jbk-nz-E3N"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="szk-fm-Xff">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WuW-D3-512">
@@ -68,19 +68,24 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-St-bIF">
-                                                            <rect key="frame" x="157" y="0.0" width="38" height="28"/>
+                                                            <rect key="frame" x="156" y="0.0" width="39" height="28"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1N-9Y-NA6">
-                                                                    <rect key="frame" x="23" y="7" width="8" height="14.5"/>
+                                                                    <rect key="frame" x="24" y="7" width="8" height="14.5"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-multiple_images_10x12_" translatesAutoresizingMaskIntoConstraints="NO" id="BkS-Yk-7o8">
+                                                                    <rect key="frame" x="7" y="8.5" width="10" height="12"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="38" id="FVx-cp-rh0"/>
+                                                                <constraint firstItem="G1N-9Y-NA6" firstAttribute="leading" secondItem="BkS-Yk-7o8" secondAttribute="trailing" constant="7" id="8de-rC-Nzb"/>
+                                                                <constraint firstItem="BkS-Yk-7o8" firstAttribute="centerY" secondItem="pM3-St-bIF" secondAttribute="centerY" id="Frq-kY-Og0"/>
                                                                 <constraint firstAttribute="height" constant="28" id="SyK-PI-gqd"/>
+                                                                <constraint firstItem="BkS-Yk-7o8" firstAttribute="leading" secondItem="pM3-St-bIF" secondAttribute="leading" constant="7" id="bki-F2-3Sc"/>
                                                                 <constraint firstAttribute="trailing" secondItem="G1N-9Y-NA6" secondAttribute="trailing" constant="7" id="fuI-9g-fvO"/>
                                                                 <constraint firstItem="G1N-9Y-NA6" firstAttribute="centerY" secondItem="pM3-St-bIF" secondAttribute="centerY" id="o1V-sO-Rf8"/>
                                                             </constraints>
@@ -142,7 +147,7 @@
                         <viewControllerLayoutGuide type="bottom" id="yCh-M7-hgX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sp4-W9-dAj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -155,11 +160,13 @@
         <!--Tab Bar Controller-->
         <scene sceneID="eqf-Kn-g41">
             <objects>
-                <tabBarController id="1ue-SG-Sci" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="cOR-79-h7f">
+                <tabBarController storyboardIdentifier="KYTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1ue-SG-Sci" customClass="KYTabBarController" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="cOR-79-h7f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.17254901960784313" green="0.20000000000000001" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="usS-9y-0vV" kind="relationship" relationship="viewControllers" id="zSR-fz-wWd"/>
@@ -171,4 +178,9 @@
             <point key="canvasLocation" x="-2804" y="-530"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-multiple_images_10x12_" width="10" height="12"/>
+        <image name="icon-tabbar-home-active_25x23_" width="25" height="23"/>
+        <image name="icon-tabbar-home_25x23_" width="25" height="23"/>
+    </resources>
 </document>

@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT const NSString *KEYPATH_isfinished;
-FOUNDATION_EXPORT const NSString *KEYPATH_progress;
+FOUNDATION_EXPORT const NSString * _Nonnull KEYPATH_isfinished;
+FOUNDATION_EXPORT const NSString * _Nonnull KEYPATH_progress;
 
 @interface KYImageModel : NSObject
 @property (nonatomic, copy) NSString *imgURLstr;

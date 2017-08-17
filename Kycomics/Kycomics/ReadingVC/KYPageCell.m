@@ -60,7 +60,7 @@
         [self.contentView addSubview:progressView];
         
         [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.bottom.equalTo(self.contentView);
+            make.left.top.equalTo(self.contentView);
             make.height.offset(2);
             make.width.offset(0);
         }];
