@@ -184,9 +184,9 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
                                     KYGETImageURLOperation *operation = [[KYGETImageURLOperation alloc]
                                                                          initWithPageURL:pageURLstr
                                                                          withCompletion:^(NSString *imgURLstr) {
-                                                                             KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr: pageURLstr imgURLstr:imgURLstr];
+                                                                             KYImageModel *imageModel = [[KYImageModel alloc] initWithPageURLstr:pageURLstr imgURLstr:imgURLstr];
                                                                              
-                                                                             [[KYNetManager manager] loadImage:imageModel];
+//                                                                             [[KYNetManager manager] loadImage:imageModel];
                                                                              
                                                                              if (complection) {
                                                                                  complection(imageModel);

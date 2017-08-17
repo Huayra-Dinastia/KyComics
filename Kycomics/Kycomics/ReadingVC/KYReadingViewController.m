@@ -17,6 +17,7 @@
 
 
 static NSString *KYPageCellId = @"KYPageCellId";
+static NSInteger preloadingPageCount = 2;
 
 @interface KYReadingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) KYComicsModel *comic;
@@ -70,6 +71,19 @@ static NSString *KYPageCellId = @"KYPageCellId";
     cell.imageModel = imageModel;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    KYImageModel *imageModel = nil;
+    NSInteger rowCount = [self tableView:tableView numberOfRowsInSection:0];
+    for (NSInteger index = indexPath.row; index < rowCount - 1; index ++) {
+        if (index > indexPath.row + preloadingPageCount) {
+            return;
+        }
+        
+        imageModel = self.imgModels[index];
+        [[KYNetManager manager] loadImage:imageModel];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
