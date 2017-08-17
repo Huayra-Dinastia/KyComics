@@ -32,6 +32,10 @@
 }
 
 - (void)downloadImage:(KYImageModel *)imageModel {
+    if (imageModel.downloadToken) {
+        return;
+    }
+    
     SDWebImageDownloadToken *downloadToken = [[SDWebImageDownloader sharedDownloader]
                                               downloadImageWithURL:imageModel.imgURL
                                               options:SDWebImageDownloaderUseNSURLCache
@@ -53,7 +57,9 @@
                                                   [[SDWebImageManager sharedManager] saveImageToCache:image forURL:imageModel.pageURL];
 
                                                   imageModel.isfinished = finished;
+                                                  imageModel.downloadToken = nil;
                                               }];
+    imageModel.downloadToken = downloadToken;
     
     NSMutableArray *tmpArr = self.downloadingQueue;
     [tmpArr addObject:imageModel];

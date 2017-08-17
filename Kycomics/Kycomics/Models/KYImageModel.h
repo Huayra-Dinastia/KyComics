@@ -19,6 +19,7 @@ FOUNDATION_EXPORT const NSString *KEYPATH_progress;
 @property (nonatomic, assign) double progress;
 @property (nonatomic, assign) BOOL isfinished;
 @property (nonatomic, strong, readonly) UIImage *image;
+@property (nonatomic, strong) SDWebImageDownloadToken *downloadToken;
 
 @property (nonatomic, assign, readonly) CGSize imgSize;
 @property (nonatomic, assign, readonly) NSInteger index;
