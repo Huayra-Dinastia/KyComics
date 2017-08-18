@@ -101,11 +101,12 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
 }
 
 /// 获取图片页面URL
-- (void)getPageURLs:(KYComicsModel *)comic complection:(KYSUCESS_BLOCK)complection {
+- (void)getPageURLs:(KYComicsModel *)comic index:(NSInteger)index complection:(KYSUCESS_BLOCK)complection {
     NSString *gid = comic.gid;
     NSString *token = comic.token;
     
-    NSString *urlString = [NSString stringWithFormat:@"g/%@/%@", gid, token];
+//    ?p=1
+    NSString *urlString = [NSString stringWithFormat:@"g/%@/%@?p=%tu", gid, token, index];
     [self kyGET:urlString parameters:nil withCompletion:^(id responseObject, NSError *error) {
         // 解析网页
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
@@ -174,9 +175,10 @@ NSString *const KYNetManagerEhentaiCancelLoadingNotification = @"KYNetManagerEhe
 }
 
 /// 获取一本漫画中所有图片的真实URL，comlection每次回调一张图片URL
-- (void)getImageURL:(KYComicsModel *)comic complection:(void (^)(KYImageModel *imageModel))complection {
+- (void)getImageURL:(KYComicsModel *)comic index:(NSInteger)index complection:(void (^)(KYImageModel *imageModel))complection {
     __weak typeof(self) weakSelf = self;
     [[KYNetManager manager] getPageURLs:comic
+                                  index:index
                             complection:^(NSArray *pageURLs, NSError *error) {
                                 __strong typeof(weakSelf) strongSelf = weakSelf;
                                 

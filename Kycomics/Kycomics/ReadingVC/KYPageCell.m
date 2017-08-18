@@ -26,7 +26,7 @@
             return;
         }
         
-        self.imgView.image = self.imageModel.image;
+//        self.imgView.image = self.imageModel.image;
     }
 }
 
@@ -76,7 +76,7 @@
     
     _imageModel = imageModel;
     [self showProgress:_imageModel.progress];
-    self.imgView.image = _imageModel.image;
+//    self.imgView.image = _imageModel.image;
     
     // 添加观察者
     [_imageModel addObserver:self forKeyPath:KEYPATH_isfinished options:NSKeyValueObservingOptionOld context:nil];

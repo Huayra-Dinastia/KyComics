@@ -57,7 +57,7 @@
             return;
         }
         
-        NSLog(@"%@", [NSThread currentThread]);
+//        NSLog(@"%@", [NSThread currentThread]);
         
         // 获取showkey
         __weak typeof(self) weakSelf = self;
