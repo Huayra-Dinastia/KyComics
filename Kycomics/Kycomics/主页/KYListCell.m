@@ -12,6 +12,7 @@
 
 @interface KYListCell ()
 @property (weak, nonatomic) IBOutlet UILabel *labTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labRating;
 @property (weak, nonatomic) IBOutlet UILabel *labFileCount;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbImageView;
 
@@ -23,6 +24,8 @@
     
     self.labTitle.text = _comic.title_jpn.length? _comic.title_jpn: _comic.title;
     self.labFileCount.text = _comic.filecount;
+    self.labRating.text = [NSString stringWithFormat:@"%.2f", _comic.rating];
+    self.thumbImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:0.3];
 //    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:_comic.thumb]];
 }
 

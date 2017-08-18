@@ -33,6 +33,7 @@
     __weak typeof(self) weakSelf = self;
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf getComics:self.page];
         strongSelf.page++;
     }];
     [self.collectionView.mj_footer beginRefreshing];
@@ -52,6 +53,7 @@
 - (void)setupUI {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
@@ -92,11 +94,6 @@
         _comics = [NSMutableArray array];
     }
     return _comics;
-}
-
-- (void)setPage:(NSInteger)page {
-    _page = page;
-    [self getComics:_page];
 }
 
 @end
