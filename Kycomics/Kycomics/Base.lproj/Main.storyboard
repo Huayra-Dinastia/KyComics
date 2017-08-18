@@ -60,6 +60,7 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xaB-aT-UcE">
                                                             <rect key="frame" x="0.0" y="0.0" width="195" height="278"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pM3-St-bIF">
                                                             <rect key="frame" x="156" y="0.0" width="39" height="28"/>
@@ -87,9 +88,9 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woU-B7-c8h">
                                                             <rect key="frame" x="0.0" y="203" width="195" height="75"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmA-4j-M1S">
-                                                                    <rect key="frame" x="7" y="7" width="181" height="14.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmA-4j-M1S">
+                                                                    <rect key="frame" x="7" y="7" width="181" height="13.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -112,7 +113,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="woU-B7-c8h" firstAttribute="leading" secondItem="PW8-Jc-eXA" secondAttribute="leading" id="0Bi-j2-JGr"/>
                                                         <constraint firstAttribute="bottom" secondItem="xaB-aT-UcE" secondAttribute="bottom" id="4dC-rD-ErF"/>
