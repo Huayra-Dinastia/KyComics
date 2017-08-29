@@ -31,13 +31,20 @@
     __weak typeof(self) weakSelf = self;
     [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:_comic.thumb]
                                   completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                                      
+
                                       [UIView animateWithDuration:0.4 animations:^{
                                           __weak typeof(weakSelf) strongSelf = weakSelf;
                                           strongSelf.thumbImageView.alpha = 1.0;
-                                          
+
                                       }];
     }];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.labTitle.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+    self.labRating.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
 }
 
 @end
